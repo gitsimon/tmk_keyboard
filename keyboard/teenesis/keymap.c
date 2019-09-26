@@ -38,7 +38,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* Teenesis keymap definition macro */
 #define KEYMAP(                                                                         \
     /* functional left */                                /* functional right */         \
-    fl0,fl1,fl2,fl3,fl4,fl5,fl6,fl7,fl8     fr8,fr7,fr6,fr5,fr4,fr3,fr2,fr1,fr0         \
+    fl0,fl1,fl2,fl3,fl4,fl5,fl6,fl7,fl8,    fr8,fr7,fr6,fr5,fr4,fr3,fr2,fr1,fr0         \
                                                                                         \
     /* left hand, spatial positions */      /* right hand, spatial positions */         \
     k00,k01,k02,k03,k04,k05,                           k06,k07,k08,k09,k0A,k0B,         \
@@ -475,10 +475,10 @@ uint8_t keymap_key_to_keycode(uint8_t layer, keypos_t key)
 
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
     if (record->event.pressed) {
-        switch (id) {
-            case XMONAD_RESET:  return MACRO_XMONAD_RESET;
-            case PASSWORD1:     return MACRO_PASSWORD1;
-        }
+//        switch (id) {
+//            case XMONAD_RESET:  return MACRO_XMONAD_RESET;
+//            case PASSWORD1:     return MACRO_PASSWORD1;
+//        }
     }
     return MACRO_NONE;
 }
