@@ -371,22 +371,21 @@ action_t keymap_fn_to_action(uint8_t keycode)
 {
     uint8_t layer = biton32(layer_state);
 
-    action_t action;
-    action.code = ACTION_NO;
+    action_t action = (action_t)ACTION_NO;
 
     if (       layer == 3 && FN_INDEX(keycode) < FN_ACTIONS_3_SIZE) {
-        action.code = pgm_read_word(&fn_actions_3[FN_INDEX(keycode)]);
+        return (action_t)pgm_read_word(&fn_actions_3[FN_INDEX(keycode)]);
     } else if (layer == 7 && FN_INDEX(keycode) < FN_ACTIONS_7_SIZE) {
-        action.code = pgm_read_word(&fn_actions_7[FN_INDEX(keycode)]);
+        return (action_t)pgm_read_word(&fn_actions_7[FN_INDEX(keycode)]);
     } else if (layer == 9 && FN_INDEX(keycode) < FN_ACTIONS_9_SIZE) {
-        action.code = pgm_read_word(&fn_actions_9[FN_INDEX(keycode)]);
+        return (action_t)pgm_read_word(&fn_actions_9[FN_INDEX(keycode)]);
     } else if (layer == 13 && FN_INDEX(keycode) < FN_ACTIONS_13_SIZE) {
-        action.code = pgm_read_word(&fn_actions_13[FN_INDEX(keycode)]);
+        return (action_t)pgm_read_word(&fn_actions_13[FN_INDEX(keycode)]);
     } else if (action.code == ACTION_NO && FN_INDEX(keycode) < FN_ACTIONS_SIZE) {
         // by default, use fn_actions from default layer 0
         // this is needed to get mapping for same key, that was used switch to some layer,
         // to have possibility to switch layers back
-        action.code = pgm_read_word(&fn_actions[FN_INDEX(keycode)]);
+        return (action_t)pgm_read_word(&fn_actions[FN_INDEX(keycode)]);
     }
 
     return action;
