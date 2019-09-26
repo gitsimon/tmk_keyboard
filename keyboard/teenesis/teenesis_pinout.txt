@@ -1,0 +1,74 @@
+// teensy i/o pins
+8 = B01234567
+2 = C67
+7 = D0123457 + D6 (internal led)
+1 = E6
+6 = F014567
+
+
+// new
+// correct
+D012345     == 6 cols for left
+F014567     == 6 cols for right
+B01234      == 5 rows for hand
+B56         == 2 rows for thumb
+
+## columns
+D0 - PL2/6    PL1/1
+D1 - PL2/7    PL1/2
+D2 - PL2/8    PL1/3
+D3 - PL2/10   PL1/8
+D4 - PL2/11
+D5 - PL2/12
+F0 - PR2/1    PR1/3
+F1 - PR2/2    PR1/4
+F4 - PR2/3    PR1/5
+F5 - PR2/6    PR1/6
+F6 - PR2/12
+F7 - PR2/13
+
+## rows
+B0 - PL2/13   PR2/10
+B1 - PL2/5    PR2/9
+B2 - PL2/3    PR2/8
+B3 - PL2/2    PR2/7
+B4 - PL2/1    PR2/4
+
+B5 - PL1/4    PR1/7
+B6 - PL1/5    PR1/8
+
+
+
+
+
+
+// misc
+// ps/2 connector
+
+kbd
+3 - red
+4 - yellow
+6 - green
+1 - white
+
+mouse
+6 - white
+2 - yellow
+3 - blue
+4 - green
+
+
+main = 5x6
+thumb = 2x4
+
+10x6+2*2x4 = 14x6 = 20pins
+
+5x12+2x4*2 = 7x12 = 19pins
+
+8 B01234567
+2 C67
+8 D01234567
+6 F014567
+1 E6
+
+
