@@ -381,7 +381,7 @@ action_t keymap_fn_to_action(uint8_t keycode)
         return (action_t)pgm_read_word(&fn_actions_9[FN_INDEX(keycode)]);
     } else if (layer == 13 && FN_INDEX(keycode) < FN_ACTIONS_13_SIZE) {
         return (action_t)pgm_read_word(&fn_actions_13[FN_INDEX(keycode)]);
-    } else if (action.code == ACTION_NO && FN_INDEX(keycode) < FN_ACTIONS_SIZE) {
+    } else if (FN_INDEX(keycode) < FN_ACTIONS_SIZE) {
         // by default, use fn_actions from default layer 0
         // this is needed to get mapping for same key, that was used switch to some layer,
         // to have possibility to switch layers back
