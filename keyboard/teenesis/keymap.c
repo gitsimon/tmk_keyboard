@@ -14,25 +14,24 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#include "keymap_common.h"
-
-/*
 #include <stdint.h>
 #include <stdbool.h>
-#include <avr/pgmspace.h>
-#include <util/delay.h>
 #include "keycode.h"
 #include "action.h"
-#include "action_util.h"
 #include "action_code.h"
-#include "action_macro.h"
 #include "action_layer.h"
-#include "bootloader.h"
+#include "action_macro.h"
+#include "action_util.h"
 #include "report.h"
 #include "host.h"
 #include "print.h"
 #include "debug.h"
 #include "keymap.h"
+
+/*
+#include <avr/pgmspace.h>
+#include <util/delay.h>
+#include "bootloader.h"
 */
 
 
@@ -400,10 +399,10 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
     // print("opt = "); phex(opt); print("\n");
 
     if (id == TEENSY_KEY) {
-        clear_keyboard();
+//        clear_keyboard();
         print("\n\nJump to bootloader... ");
-        _delay_ms(50);
-        bootloader_jump(); // should not return
+//        _delay_ms(50);
+//        bootloader_jump(); // should not return
         print("not supported.\n");
     }
 
