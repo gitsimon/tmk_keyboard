@@ -284,7 +284,7 @@ enum macro_id {
 /*
  * Fn action definition
  */
-static const uint16_t PROGMEM fn_actions[] = {
+const action_t fn_actions[] PROGMEM = {
     [ 0] =  ACTION_FUNCTION(TEENSY_KEY),                    // FN0  = Teensy key
     [ 1] =  ACTION_MODS_KEY(MOD_LSFT, KC_SLCK),             // FN1  = Shifted ScrollLock
 
@@ -314,7 +314,7 @@ static const uint16_t PROGMEM fn_actions[] = {
     [31] =  ACTION_LAYER_SET(0, ON_BOTH),                   // FN31 = set Layer0
 };
 
-static const uint16_t PROGMEM fn_actions_3[] = {
+const action_t fn_actions_3[] PROGMEM = {
     [ 1] =  ACTION_MODS_KEY(MOD_LSFT, KC_BSLS),             // FN1  = Shifted BackSlash // " in Workman
     [ 2] =  ACTION_MODS_KEY(MOD_LSFT, KC_MINS),             // FN2  = Shifted Minus     // \ in Workman
     [ 3] =  ACTION_MODS_KEY(MOD_LSFT, KC_COMM),             // FN3  = Shifted comma     // < in Workman
@@ -323,7 +323,7 @@ static const uint16_t PROGMEM fn_actions_3[] = {
     [ 6] =  ACTION_MODS_KEY(MOD_LSFT, KC_LBRC),             // FN6  = Shifted [         // % in Workman
 };
 
-static const uint16_t PROGMEM fn_actions_7[] = {
+const action_t fn_actions_7[] PROGMEM = {
     [ 0] =  ACTION_MODS_KEY(MOD_LCTL,          KC_P0),      // FN0  = Ctrl+0
     [ 1] =  ACTION_MODS_KEY(MOD_LALT,          KC_P1),      // FN1  = Alt+1
     [ 2] =  ACTION_MODS_KEY(MOD_LALT,          KC_P2),      // FN2  = Alt+2
@@ -342,11 +342,11 @@ static const uint16_t PROGMEM fn_actions_7[] = {
     [15] =  ACTION_MODS_KEY(MOD_LCTL,          KC_PPLS),    // FN15 = Ctrl+Pad Plus
 };
 
-static const uint16_t PROGMEM fn_actions_9[] = {
+const action_t fn_actions_9[] PROGMEM = {
     [ 5] =  ACTION_LAYER_SET(9, ON_BOTH),                   // FN5  = set Layer9
 };
 
-static const uint16_t PROGMEM fn_actions_13[] = {
+const action_t fn_actions_13[] PROGMEM = {
     [ 0] =  ACTION_FUNCTION(TEENSY_KEY),                    // FN0  = Teensy key
     [ 1] =  ACTION_MACRO(XMONAD_RESET),                     // FN1  = xmonad-reanimator
     [ 2] =  ACTION_MACRO(PASSWORD1),                        // FN2  = default password

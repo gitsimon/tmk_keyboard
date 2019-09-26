@@ -27,13 +27,13 @@ Project located at <https://github.com/benblazak/ergodox-firmware>
 
 /* USB Device descriptor parameter */
 #define VENDOR_ID       0xFEED
-#define PRODUCT_ID      0x0713
-#define DEVICE_VER      0x0001
+#define PRODUCT_ID      0x1307
+#define DEVICE_VER      0x0002
 #define MANUFACTURER    TMK/Cub
 #define PRODUCT         Teenesis
 #define DESCRIPTION     t.m.k. keyboard firmware for Kinesis
 
-#define MATRIX_ROWS 12
+#define MATRIX_ROWS 15
 #define MATRIX_COLS 7
 
 #define MOUSEKEY_DELAY          100
