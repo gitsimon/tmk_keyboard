@@ -14,6 +14,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+#include "keymap_common.h"
+
+/*
 #include <stdint.h>
 #include <stdbool.h>
 #include <avr/pgmspace.h>
@@ -30,23 +33,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "print.h"
 #include "debug.h"
 #include "keymap.h"
+*/
 
 
 /* Teenesis keymap definition macro */
-#ifdef KEYMAP_TEENESIS_70
-#error There is no 70-key suppor for Teenesis for now
-#else
-#define KEYMAP(                                                              \
+#define KEYMAP(                                                                         \
+    /* functional left */                                /* functional right */         \
+    fl0,fl1,fl2,fl3,fl4,fl5,fl6,fl7,fl8     fr8,fr7,fr6,fr5,fr4,fr3,fr2,fr1,fr0         \
                                                                                         \
     /* left hand, spatial positions */      /* right hand, spatial positions */         \
-    k00,k01,k02,k03,k04,k05,                        k06,k07,k08,k09,k0A,k0B,            \
-    k10,k11,k12,k13,k14,k15,                        k16,k17,k18,k19,k1A,k1B,            \
-    k20,k21,k22,k23,k24,k25,                        k26,k27,k28,k29,k2A,k2B,            \
-    k30,k31,k32,k33,k34,k35,                        k36,k37,k38,k39,k3A,k3B,            \
-        k41,k42,k43,k44,                                k47,k48,k49,k4A,                \
-                            k52,k62,        k59,k68,                                    \
-                                k63,        k58,                                        \
-                        k53,k50,k61,        k56,k67,k66 )                               \
+    k00,k01,k02,k03,k04,k05,                           k06,k07,k08,k09,k0A,k0B,         \
+    k10,k11,k12,k13,k14,k15,                           k16,k17,k18,k19,k1A,k1B,         \
+    k20,k21,k22,k23,k24,k25,                           k26,k27,k28,k29,k2A,k2B,         \
+    k30,k31,k32,k33,k34,k35,                           k36,k37,k38,k39,k3A,k3B,         \
+        k41,k42,k43,k44,                                   k47,k48,k49,k4A,             \
+                            k52,k62,           k59,k68,                                 \
+                                k63,           k58,                                     \
+                        k53,k50,k61,           k56,k67,k66 )                            \
                                                                                         \
                                                                                         \
    /* matrix positions, k40 & k4B unused for now, k45 & k46 are untraced on plate */    \
@@ -60,30 +63,35 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     { KC_##k03,KC_##k13,KC_##k23,KC_##k33,KC_##k43,  KC_##k53,KC_##k63},  /* 3: D3 */   \
     { KC_##k04,KC_##k14,KC_##k24,KC_##k34,KC_NO   ,  KC_NO   ,KC_NO   },  /* 4: D4 */   \
     { KC_##k05,KC_##k15,KC_##k25,KC_##k35,KC_##k44,  KC_NO   ,KC_NO   },  /* 5: D5 */   \
-   /* Right hand                                     Right thumb          */            \
+   /* Right hand                                     Right thumb                   */   \
     { KC_##k06,KC_##k16,KC_##k26,KC_##k36,KC_##k47,  KC_##k56,KC_##k66},  /* 0: F0 */   \
     { KC_##k08,KC_##k18,KC_##k28,KC_##k38,KC_##k48,  KC_NO   ,KC_##k67},  /* 1: F1 */   \
     { KC_##k07,KC_##k17,KC_##k27,KC_##k37,KC_NO   ,  KC_##k58,KC_##k68},  /* 2: F4 */   \
     { KC_##k0B,KC_##k1B,KC_##k2B,KC_##k3B,KC_NO   ,  KC_##k59,KC_NO   },  /* 3: F5 */   \
     { KC_##k09,KC_##k19,KC_##k29,KC_##k39,KC_##k49,  KC_NO   ,KC_NO   },  /* 4: F6 */   \
-    { KC_##k0A,KC_##k1A,KC_##k2A,KC_##k3A,KC_##k4A,  KC_NO   ,KC_NO   }   /* 5: F7 */   \
+    { KC_##k0A,KC_##k1A,KC_##k2A,KC_##k3A,KC_##k4A,  KC_NO   ,KC_NO   },  /* 5: F7 */   \
+   /* Left functional                     Right functional                         */   \
+    { KC_##fl0,KC_##fl3,KC_##fl6,KC_NO   ,KC_##fr2,  KC_##fr8,KC_##fr5},  /* 0: E6 */   \
+    { KC_##fl1,KC_##fl4,KC_##fl7,KC_NO   ,KC_##fr0,  KC_##fr7,KC_##fr4},  /* 1: C6 */   \
+    { KC_##fl2,KC_##fl5,KC_##fl8,KC_NO   ,KC_##fr1,  KC_##fr6,KC_##fr3}   /* 2: C7 */   \
    }
 
-#endif
 
 
 static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KEYMAP(  // layer 0 : default
-    //       ;    !    #    {    }                   [    ]    *    (    )    =
-        BSLS,1   ,2   ,3   ,4   ,FN20,               FN21,7   ,8   ,9   ,0   ,EQL ,
-        FN10,Q   ,W   ,E   ,R   ,T   ,               Y   ,U   ,I   ,O   ,P   ,LBRC,
-        FN11,FN13,FN14,FN15,FN16,G   ,               H   ,J   ,K   ,L   ,SCLN,FN12,
-        GRV ,Z   ,X   ,C   ,FN17,B   ,               N   ,M   ,COMM,DOT ,SLSH,RBRC,
-             CAPS,FN1 ,HOME,END ,                         LEFT,UP  ,DOWN,RGHT,
-                                 FN18,FN31,     FN0 ,FN19,
-                                      FN23,     FN24,
-                            FN25,FN26,FN27,     FN28,FN29,FN30
+        F1  ,F2  ,F3  ,F4  ,F5  ,F6  ,F7  ,F8  ,      F9  ,F10 ,F11 ,F12 ,PSCR,SLCK,PAUS,NLCK,EXEC,
+    //       ;    !    #    {    }                                   [    ]    *    (    )    =
+        BSLS,1   ,2   ,3   ,4   ,FN20,                               FN21,7   ,8   ,9   ,0   ,EQL ,
+        FN10,Q   ,W   ,E   ,R   ,T   ,                               Y   ,U   ,I   ,O   ,P   ,LBRC,
+        FN11,FN13,FN14,FN15,FN16,G   ,                               H   ,J   ,K   ,L   ,SCLN,FN12,
+        GRV ,Z   ,X   ,C   ,FN17,B   ,                               N   ,M   ,COMM,DOT ,SLSH,RBRC,
+             CAPS,FN1 ,HOME,END ,                                         LEFT,UP  ,DOWN,RGHT,
+                                 FN18,FN31,                     FN0 ,FN19,
+                                      FN23,                     FN24,
+                            FN25,FN26,FN27,                     FN28,FN29,FN30
     ),
+    /*
 
     KEYMAP(  // Layer1: Workman layout
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,               TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
@@ -108,11 +116,11 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     KEYMAP(  // Layer3: unconvenient keys on right hand
-                                                    /* in Workman right hand will be:
-                                                            { } ( ) +
-                                                          ? ^ % ( ) =
-                                                          ' ! $ " ; \
-                                                          # [ < > ] \         */
+                                                    // in Workman right hand will be:
+                                                    //      { } ( ) +
+                                                    //    ? ^ % ( ) =
+                                                    //    ' ! $ " ; \
+                                                    //    # [ < > ] \
         FN31,NO  ,NO  ,NO  ,NO  ,NO  ,               NO  ,4   ,5   ,9   ,0   ,PPLS,
         NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,               FN5, MINS,FN6, 9   ,0   ,EQL ,
         NO  ,TRNS,NO  ,NO  ,NO  ,NO  ,               BSLS,2   ,P   ,FN1 ,1   ,FN2 ,
@@ -236,6 +244,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                             TRNS,TRNS,TRNS,     TRNS,TRNS,TRNS
     ),
 
+    */
 
 
 
@@ -465,7 +474,6 @@ uint8_t keymap_key_to_keycode(uint8_t layer, keypos_t key)
 }
 
 
-#include "keymap_passwords.h"
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
     if (record->event.pressed) {
         switch (id) {
