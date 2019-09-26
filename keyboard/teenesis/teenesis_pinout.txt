@@ -8,24 +8,28 @@
 
 // new
 // correct
-D012345     == 6 cols for left
-F014567     == 6 cols for right
+F014567     == 6 cols for left
+D012345     == 6 cols for right
 B01234      == 5 rows for hand
 B56         == 2 rows for thumb
+E6, C67     == 3 rows for F-keys
 
 ## columns
-D0 - PL2/6    PL1/1
-D1 - PL2/7    PL1/2
-D2 - PL2/8    PL1/3
-D3 - PL2/10   PL1/8
-D4 - PL2/11
-D5 - PL2/12
-F0 - PR2/1    PR1/3
-F1 - PR2/2    PR1/4
-F4 - PR2/3    PR1/5
-F5 - PR2/6    PR1/6
-F6 - PR2/12
-F7 - PR2/13
+F0 - PL2/6    PL1/1
+F1 - PL2/7    PL1/2
+F4 - PL2/8    PL1/3
+F5 - PL2/10   PL1/8
+F6 - PL2/11
+F7 - PL2/12
+D0 - PR2/1    PR1/3
+D1 - PR2/2    PR1/4
+D2 - PR2/3    PR1/5
+D3 - PR2/6    PR1/6
+D4 - PR2/12
+D5 - PR2/13
+E6 - 
+C6 - 
+C7 - 
 
 ## rows
 B0 - PL2/13   PR2/10
