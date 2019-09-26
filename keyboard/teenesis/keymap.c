@@ -79,16 +79,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KEYMAP(  // layer 0 : default
-        F1  ,F2  ,F3  ,F4  ,F5  ,F6  ,F7  ,F8  ,      F9  ,F10 ,F11 ,F12 ,PSCR,SLCK,PAUS,NLCK,EXEC,
-    //       ;    !    #    {    }                                   [    ]    *    (    )    =
-        BSLS,1   ,2   ,3   ,4   ,FN20,                               FN21,7   ,8   ,9   ,0   ,EQL ,
-        FN10,Q   ,W   ,E   ,R   ,T   ,                               Y   ,U   ,I   ,O   ,P   ,LBRC,
-        FN11,FN13,FN14,FN15,FN16,G   ,                               H   ,J   ,K   ,L   ,SCLN,FN12,
-        GRV ,Z   ,X   ,C   ,FN17,B   ,                               N   ,M   ,COMM,DOT ,SLSH,RBRC,
-             CAPS,FN1 ,HOME,END ,                                         LEFT,UP  ,DOWN,RGHT,
-                                 FN18,FN31,                     FN0 ,FN19,
-                                      FN23,                     FN24,
-                            FN25,FN26,FN27,                     FN28,FN29,FN30
+        ESC ,F1  ,F2  ,F3  ,F4  ,F5  ,F6  ,F7  ,F8  ,       F9  ,F10 ,F11 ,F12 ,PSCR,SLCK,PAUS,NLCK,EXEC,
+    //                ;    !    #    {    }                      [    ]    *    (    )    =
+                 BSLS,1   ,2   ,3   ,4   ,FN20,                  FN21,7   ,8   ,9   ,0   ,EQL ,
+                 FN10,Q   ,W   ,E   ,R   ,T   ,                  Y   ,U   ,I   ,O   ,P   ,LBRC,
+                 FN11,FN13,FN14,FN15,FN16,G   ,                  H   ,J   ,K   ,L   ,SCLN,FN12,
+                 GRV ,Z   ,X   ,C   ,FN17,B   ,                  N   ,M   ,COMM,DOT ,SLSH,RBRC,
+                      CAPS,FN1 ,HOME,END ,                            LEFT,UP  ,DOWN,RGHT,
+                                          FN18,FN31,        FN0 ,FN19,
+                                               FN23,        FN24,
+                                     FN25,FN26,FN27,        FN28,FN29,FN30
     ),
     /*
 
