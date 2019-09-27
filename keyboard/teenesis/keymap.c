@@ -35,6 +35,35 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
+/* pinout
+## columns
+F0 - PL2/6    PL1/1
+F1 - PL2/7    PL1/2
+F4 - PL2/8    PL1/3
+F5 - PL2/10   PL1/8
+F6 - PL2/11
+F7 - PL2/12
+D0 - PR2/1    PR1/3
+D1 - PR2/2    PR1/4
+D2 - PR2/3    PR1/5
+D3 - PR2/6    PR1/6
+D4 - PR2/12
+D5 - PR2/13
+E6 - 
+C6 - 
+C7 - 
+
+## rows
+B0 - PL2/13   PR2/10
+B1 - PL2/5    PR2/9
+B2 - PL2/3    PR2/8
+B3 - PL2/2    PR2/7
+B4 - PL2/1    PR2/4
+
+B5 - PL1/4    PR1/7
+B6 - PL1/5    PR1/8
+*/
+
 /* Teenesis keymap definition macro */
 #define KEYMAP(                                                                         \
     /* functional left */                                /* functional right */         \
@@ -81,6 +110,21 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KEYMAP(  // layer 0 : default
         ESC ,F1  ,F2  ,F3  ,F4  ,F5  ,F6  ,F7  ,F8  ,       F9  ,F10 ,F11 ,F12 ,PSCR,SLCK,PAUS,NLCK,EXEC,
     //                ;    !    #    {    }                      [    ]    *    (    )    =
+                 Y   ,1   ,2   ,3   ,4   ,5   ,                  6   ,7   ,8   ,9   ,0   ,EQL ,
+                 H   ,Q   ,W   ,E   ,R   ,T   ,                  Y   ,U   ,I   ,O   ,P   ,LBRC,
+                 N   ,A   ,S   ,D   ,F   ,G   ,                  H   ,J   ,K   ,L   ,SCLN,ENT ,
+                 GRV ,Z   ,X   ,C   ,V   ,B   ,                  N   ,M   ,COMM,DOT ,SLSH,RBRC,
+                      U   ,I   ,O   ,P   ,                            A   ,S   ,D   ,F   ,
+                                          A   ,S   ,        A   ,S   ,
+                                               D   ,        D   ,
+                                     A   ,S   ,D   ,        A   ,S   ,D   
+    ),
+
+    /*
+
+    KEYMAP(  // layer 0 : default
+        ESC ,F1  ,F2  ,F3  ,F4  ,F5  ,F6  ,F7  ,F8  ,       F9  ,F10 ,F11 ,F12 ,PSCR,SLCK,PAUS,NLCK,EXEC,
+    //                ;    !    #    {    }                      [    ]    *    (    )    =
                  BSLS,1   ,2   ,3   ,4   ,FN20,                  FN21,7   ,8   ,9   ,0   ,EQL ,
                  FN10,Q   ,W   ,E   ,R   ,T   ,                  Y   ,U   ,I   ,O   ,P   ,LBRC,
                  FN11,FN13,FN14,FN15,FN16,G   ,                  H   ,J   ,K   ,L   ,SCLN,FN12,
@@ -90,7 +134,6 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                FN23,        FN24,
                                      FN25,FN26,FN27,        FN28,FN29,FN30
     ),
-    /*
 
     KEYMAP(  // Layer1: Workman layout
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,               TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
