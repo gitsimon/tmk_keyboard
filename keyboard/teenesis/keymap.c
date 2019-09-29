@@ -44,11 +44,11 @@ F5 - PL2/10   PL1/8
 F6 - PL2/11
 F7 - PL2/12
 D0 - PR2/1    PR1/3
-D1 - PR2/2    PR1/4
-D2 - PR2/3    PR1/5
-D3 - PR2/6    PR1/6
-D4 - PR2/12
-D5 - PR2/13
+D1 - PR2/3,2  PR1/4
+D2 - PR2/2,3  PR1/5
+D3 - PR2/12,6 PR1/6
+D4 - PR2/13,12
+D5 - PR2/6,13
 E6 - 
 C6 - 
 C7 - 
@@ -93,11 +93,11 @@ B6 - PL1/5    PR1/8
     { KC_##k05,KC_##k15,KC_##k25,KC_##k35,KC_##k44,  KC_NO   ,KC_NO   },  /* 5: F7 */   \
    /* Right hand                                     Right thumb                   */   \
     { KC_##k06,KC_##k16,KC_##k26,KC_##k36,KC_##k47,  KC_##k56,KC_##k66},  /* 0: D0 */   \
-    { KC_##k08,KC_##k18,KC_##k28,KC_##k38,KC_##k48,  KC_NO   ,KC_##k67},  /* 1: D1 */   \
-    { KC_##k07,KC_##k17,KC_##k27,KC_##k37,KC_NO   ,  KC_##k58,KC_##k68},  /* 2: D2 */   \
-    { KC_##k0B,KC_##k1B,KC_##k2B,KC_##k3B,KC_NO   ,  KC_##k59,KC_NO   },  /* 3: D3 */   \
-    { KC_##k09,KC_##k19,KC_##k29,KC_##k39,KC_##k49,  KC_NO   ,KC_NO   },  /* 4: D4 */   \
-    { KC_##k0A,KC_##k1A,KC_##k2A,KC_##k3A,KC_##k4A,  KC_NO   ,KC_NO   },  /* 5: D5 */   \
+    { KC_##k07,KC_##k17,KC_##k27,KC_##k37,KC_NO   ,  KC_NO   ,KC_##k67},  /* 2: D1 */   \
+    { KC_##k08,KC_##k18,KC_##k28,KC_##k38,KC_##k48,  KC_##k58,KC_##k68},  /* 1: D2 */   \
+    { KC_##k09,KC_##k19,KC_##k29,KC_##k39,KC_##k49,  KC_##k59,KC_NO   },  /* 4: D3 */   \
+    { KC_##k0A,KC_##k1A,KC_##k2A,KC_##k3A,KC_##k4A,  KC_NO   ,KC_NO   },  /* 5: D4 */   \
+    { KC_##k0B,KC_##k1B,KC_##k2B,KC_##k3B,KC_NO   ,  KC_NO   ,KC_NO   },  /* 3: D5 */   \
    /* Left functional                     Right functional                         */   \
     { KC_##fl0,KC_##fl3,KC_##fl6,KC_NO   ,KC_##fr2,  KC_##fr8,KC_##fr5},  /* 0: E6 */   \
     { KC_##fl1,KC_##fl4,KC_##fl7,KC_NO   ,KC_##fr0,  KC_##fr7,KC_##fr4},  /* 1: C6 */   \
