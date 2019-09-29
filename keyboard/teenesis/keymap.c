@@ -44,12 +44,12 @@ F5 - PL2/10   PL1/8
 F6 - PL2/11
 F7 - PL2/12
 D0 - PR2/1    PR1/3
-D1 - PR2/3,2  PR1/4
-D2 - PR2/2,3  PR1/5
-D3 - PR2/12,6 PR1/6
-D4 - PR2/13,12
-D5 - PR2/6,13
-E6 - 
+D1 - PR2/3    PR1/4
+D2 - PR2/2    PR1/5
+D3 - PR2/12   PR1/6
+D4 - PR2/13
+D5 - PR2/6
+D6 - 
 C6 - 
 C7 - 
 
@@ -99,7 +99,7 @@ B6 - PL1/5    PR1/8
     { KC_##k0A,KC_##k1A,KC_##k2A,KC_##k3A,KC_##k4A,  KC_NO   ,KC_NO   },  /* 5: D4 */   \
     { KC_##k0B,KC_##k1B,KC_##k2B,KC_##k3B,KC_NO   ,  KC_NO   ,KC_NO   },  /* 3: D5 */   \
    /* Left functional                     Right functional                         */   \
-    { KC_##fl0,KC_##fl3,KC_##fl6,KC_NO   ,KC_##fr2,  KC_##fr8,KC_##fr5},  /* 0: E6 */   \
+    { KC_##fl0,KC_##fl3,KC_##fl6,KC_NO   ,KC_##fr2,  KC_##fr8,KC_##fr5},  /* 0: D6 */   \
     { KC_##fl1,KC_##fl4,KC_##fl7,KC_NO   ,KC_##fr0,  KC_##fr7,KC_##fr4},  /* 1: C6 */   \
     { KC_##fl2,KC_##fl5,KC_##fl8,KC_NO   ,KC_##fr1,  KC_##fr6,KC_##fr3}   /* 2: C7 */   \
    }
