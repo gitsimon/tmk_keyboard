@@ -107,17 +107,53 @@ B6 - PL1/5    PR1/8
 
 
 static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    KEYMAP(  // layer 0 : default
-        1   ,2   ,3   ,4   ,5   ,6   ,7   ,8   ,9   ,       1   ,2   ,3   ,4   ,5   ,6   ,7   ,8   ,9   ,
+    KEYMAP(  // Layer 0 : default
+        ESC ,F1  ,F2  ,F3  ,F4  ,F5  ,F6  ,F7  ,F8  ,       F9  ,F10 ,F11 ,F12 ,PSCR,SLCK,PAUS,NLCK,EXEC,
     //                ;    !    #    {    }                      [    ]    *    (    )    =
-                 Y   ,1   ,2   ,3   ,4   ,5   ,                  6   ,7   ,8   ,9   ,0   ,EQL ,
-                 H   ,Q   ,W   ,E   ,R   ,T   ,                  Y   ,U   ,I   ,O   ,P   ,LBRC,
-                 N   ,A   ,S   ,D   ,F   ,G   ,                  H   ,J   ,K   ,L   ,SCLN,ENT ,
+                 BSLS,1   ,2   ,3   ,4   ,5   ,                  6   ,7   ,8   ,9   ,0   ,EQL ,
+                 MINS,Q   ,W   ,E   ,R   ,T   ,                  Y   ,U   ,I   ,O   ,P   ,LBRC,
+                 FN11,A   ,FN3 ,FN2 ,FN1 ,G   ,                  H   ,J   ,K   ,L   ,SCLN,FN12,
                  GRV ,Z   ,X   ,C   ,V   ,B   ,                  N   ,M   ,COMM,DOT ,SLSH,RBRC,
-                      U   ,I   ,O   ,P   ,                            A   ,S   ,D   ,F   ,
-                                          1   ,2   ,        1   ,2   ,
-                                               3   ,        3   ,
-                                     4   ,5   ,6   ,        4   ,5   ,6   
+                      CAPS,FN21,HOME,END ,                            LEFT,UP  ,DOWN,RGHT,
+                                          NO  ,FN31,        PGUP,PGUP,
+                                               FN23,        FN24,
+                                     FN25,FN26,FN27,        FN28,FN29,FN30
+    ),
+
+    KEYMAP(  // Layer1(6): numpad
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,       TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+                 FN31,NO  ,NO  ,NO  ,NO  ,NO  ,                  NLCK,PSLS,PAST,PAST,PMNS,BSPC,
+                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  NO  ,P7  ,P8  ,P9  ,PMNS,PGUP,
+                 NO  ,NO  ,NO  ,NO  ,FN1 ,NO  ,                  NO  ,P4  ,P5  ,P6  ,PPLS,PGDN,
+                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  NO  ,P1  ,P2  ,P3  ,PPLS,PENT,
+                      NO  ,FN31,NO  ,NO  ,                            P0  ,PDOT,SLSH,PENT,
+                                          TRNS,TRNS,        TRNS,TRNS,
+                                               TRNS,        TRNS,
+                                     TRNS,TRNS,TRNS,        TRNS,TRNS,TRNS
+    ),
+
+    KEYMAP(  // Layer2(5): mouse and navigation
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,       TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+                 FN31,NO  ,NO  ,NO  ,NO  ,NO  ,                  MPLY,MPRV,MNXT,VOLD,VOLU,MUTE,
+                 NO  ,NO  ,NO  ,NO  ,ACL0,NO  ,                  BTN2,WH_L,WH_U,WH_D,WH_R,PGUP,
+                 NO  ,NO  ,NO  ,FN2 ,ACL1,NO  ,                  BTN1,MS_L,MS_U,MS_D,MS_R,PGDN,
+                 NO  ,NO  ,NO  ,NO  ,ACL2,NO  ,                  BTN3,HOME,END ,DEL ,INS ,NO  ,
+                      NO  ,FN31,NO  ,NO  ,                            NO  ,NO  ,NO  ,NO  ,
+                                          TRNS,TRNS,        TRNS,TRNS,
+                                               TRNS,        TRNS,
+                                     TRNS,TRNS,TRNS,        TRNS,TRNS,TRNS
+    ),
+
+    KEYMAP(  // Layer3(4): F-keys + PgUp/PgDn on right hand
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,       TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+                 FN0 ,NO  ,NO  ,NO  ,NO  ,NO  ,                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,
+                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  NO  ,F1  ,F2  ,F3  ,F4  ,PGUP,
+                 NO  ,NO  ,FN3 ,NO  ,NO  ,NO  ,                  NO  ,F5  ,F6  ,F7  ,F8  ,PGDN,
+                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  NO  ,F9  ,F10 ,F11 ,F12 ,APP ,
+                      NO  ,FN31,NO  ,NO  ,                            NO  ,NO  ,NO  ,NO  ,
+                                          TRNS,TRNS,        TRNS,TRNS,
+                                               TRNS,        TRNS,
+                                     TRNS,TRNS,TRNS,        TRNS,TRNS,TRNS
     ),
 
     /*
@@ -329,21 +365,22 @@ enum macro_id {
  */
 const action_t fn_actions[] PROGMEM = {
     [ 0] =  ACTION_FUNCTION(TEENSY_KEY),                    // FN0  = Teensy key
-    [ 1] =  ACTION_MODS_KEY(MOD_LSFT, KC_SLCK),             // FN1  = Shifted ScrollLock
 
+    [ 1] =  ACTION_LAYER_TAP_KEY(1, KC_F),                  // FN16 = momentary Layer6 on F key
+    [ 2] =  ACTION_LAYER_TAP_KEY(2, KC_D),                  // FN15 = momentary Layer5 on D key
+    [ 3] =  ACTION_LAYER_TAP_KEY(3, KC_S),                  // FN14 = momentary Layer4 on S key
+    [ 4] =  ACTION_LAYER_TAP_KEY(4, KC_A),                  // FN13 = momentary Layer3 on A key
+    [ 5] =  ACTION_LAYER_TAP_KEY(5, KC_V),                  // FN17 = momentary Layer7 on V key
 
-    [10] =  ACTION_MODS_KEY(MOD_LSFT, KC_MINS),             // FN10 = Shifted Minus -- \ in Workman
+    // [10] =  ACTION_MODS_KEY(MOD_LSFT, KC_MINS),             // FN10 = Shifted Minus -- \ in Workman
     [11] =  ACTION_MODS_TAP_KEY(MOD_LSFT, KC_TAB),          // FN11 = LShift with tap Tab
     [12] =  ACTION_MODS_TAP_KEY(MOD_RSFT, KC_QUOT),         // FN12 = RShift with tap quotes
-    [13] =  ACTION_LAYER_TAP_KEY(3, KC_A),                  // FN13 = momentary Layer3 on A key
-    [14] =  ACTION_LAYER_TAP_KEY(4, KC_S),                  // FN14 = momentary Layer4 on S key
-    [15] =  ACTION_LAYER_TAP_KEY(5, KC_D),                  // FN15 = momentary Layer5 on D key
-    [16] =  ACTION_LAYER_TAP_KEY(6, KC_F),                  // FN16 = momentary Layer6 on F key
-    [17] =  ACTION_LAYER_TAP_KEY(7, KC_V),                  // FN17 = momentary Layer7 on V key
-    [18] =  ACTION_FUNCTION_TAP(L_CTRL_ALT_NO),             // FN18 = momentary Layer8+CTRL+ALT on NO
-    [19] =  ACTION_FUNCTION_TAP(R_CTRL_ALT_PGUP),           // FN19 = momentary Layer8+CTRL+ALT on PGUP
-    [20] =  ACTION_LAYER_TAP_KEY(13, KC_5),                 // FN20 = momentary Layer13 on 5 key
-    [21] =  ACTION_LAYER_TAP_KEY(13, KC_6),                 // FN21 = momentary Layer13 on 6 key
+    //[18] =  ACTION_FUNCTION_TAP(L_CTRL_ALT_NO),             // FN18 = momentary Layer8+CTRL+ALT on NO
+    //[19] =  ACTION_FUNCTION_TAP(R_CTRL_ALT_PGUP),           // FN19 = momentary Layer8+CTRL+ALT on PGUP
+    //[20] =  ACTION_LAYER_TAP_KEY(13, KC_5),                 // FN20 = momentary Layer13 on 5 key
+    //[21] =  ACTION_LAYER_TAP_KEY(13, KC_6),                 // FN21 = momentary Layer13 on 6 key
+
+    [21] =  ACTION_MODS_KEY(MOD_LSFT, KC_SLCK),             // FN1  = Shifted ScrollLock
 
     [23] =  ACTION_MODS_TAP_KEY(MOD_LALT, KC_NO),           // FN23 = LAlt   with tap Escape
     [24] =  ACTION_MODS_TAP_KEY(MOD_RALT, KC_PGDN),         // FN24 = RAlt   with tap PgDn
