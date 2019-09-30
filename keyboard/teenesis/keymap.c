@@ -112,9 +112,9 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ESC ,F1  ,F2  ,F3  ,F4  ,F5  ,F6  ,F7  ,F8  ,       F9  ,F10 ,F11 ,F12 ,PSCR,SLCK,PAUS,NLCK,EXEC,
     //                ;    !    #    {    }                      [    ]    *    (    )    =
                  NO  ,1   ,2   ,3   ,4   ,FN28,                  FN29,7   ,8   ,9   ,0   ,EQL ,
-                 NO  ,Q   ,W   ,E   ,R   ,T   ,                  Y   ,U   ,I   ,O   ,P   ,FN9 ,
-                 FN11,FN21,FN22,FN23,FN24,G   ,                  H   ,J   ,K   ,L   ,SCLN,FN12,
-                 FN10,Z   ,X   ,C   ,V   ,B   ,                  N   ,M   ,COMM,DOT ,SLSH,BSLS,
+                 NO  ,Q   ,W   ,E   ,R   ,T   ,                  Y   ,U   ,I   ,O   ,P   ,FN8 ,
+                 FN10,FN21,FN22,FN23,FN24,G   ,                  H   ,J   ,K   ,L   ,SCLN,FN11,
+                 FN9 ,Z   ,X   ,C   ,V   ,B   ,                  N   ,M   ,COMM,DOT ,SLSH,BSLS,
                       CAPS,SLCK,HOME,END ,                            LEFT,UP  ,DOWN,RGHT,
                                           NO  ,FN31,        PGUP,NO  ,
                                                FN12,        FN13,
@@ -159,10 +159,16 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     KEYMAP(  // Layer4: unconvenient keys on right hand
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,       TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,  // in Workman right hand will be:
+                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  FN0 ,FN1 ,FN2 ,9   ,0   ,EQL ,            //    | { } ( ) =
+                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  7   ,MINS,FN5 ,LBRC,RBRC,PPLS,            //    & - > [ ] +
+                 NO  ,NO  ,NO  ,NO  ,TRNS,NO  ,                  QUOT,1   ,4   ,FN3 ,FN6 ,P   ,            //    ' ! $ " : ;
+                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  3   ,6   ,FN4 ,FN5 ,5   ,8   ,            //    # ^ < > % *
+                 /*
                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  FN1 ,FN2 ,9   ,8   ,0   ,PPLS,            //    { } ( * ) +
                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  7   ,6   ,5   ,LBRC,RBRC,EQL ,            //    & ^ % [ ] =
                  NO  ,NO  ,NO  ,NO  ,TRNS,NO  ,                  QUOT,1   ,4   ,FN3 ,FN6 ,P   ,            //    ' ! $ " : ;
                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  3   ,LBRC,FN4 ,FN5 ,RBRC,FN0 ,            //    # [ < > ] |
+                 */
                       NO  ,NO  ,NO  ,NO  ,                            NO  ,NO  ,NO  ,NO  ,
                                           TRNS,TRNS,        TRNS,TRNS,
                                                TRNS,        TRNS,
@@ -396,12 +402,12 @@ const action_t fn_actions_0[] PROGMEM = {
 
     // modified/shifted/inverted
     //[20] =  ACTION_MODS_KEY(MOD_LSFT, KC_SLCK),                 // FN22 = Shifted ScrollLock
-    [ 9] =  ACTION_MODS_KEY(MOD_LSFT,           KC_LBRC),       // FN9
-    [10] =  ACTION_MODS_KEY(MOD_LSFT,           KC_GRV),        // FN10 = Inverted `/~ pair
+    [ 8] =  ACTION_MODS_KEY(MOD_LSFT,           KC_LBRC),       // FN8
+    [ 9] =  ACTION_MODS_KEY(MOD_LSFT,           KC_GRV),        // FN9  = Inverted `/~ pair
 
     // dual-role
-    [11] =  ACTION_MODS_TAP_KEY(MOD_LSFT,       KC_TAB),        // FN11 = LShift with tap Tab
-    [12] =  ACTION_MODS_TAP_KEY(MOD_RSFT,       KC_MINS),       // FN12 = RShift with tap -/_
+    [10] =  ACTION_MODS_TAP_KEY(MOD_LSFT,       KC_TAB),        // FN10 = LShift with tap Tab
+    [11] =  ACTION_MODS_TAP_KEY(MOD_RSFT,       KC_MINS),       // FN11 = RShift with tap -/_
     // thumbs section
     [12] =  ACTION_MODS_TAP_KEY(MOD_LALT,       KC_NO),         // FN12 = LAlt   with tap Escape
     [13] =  ACTION_MODS_TAP_KEY(MOD_RALT,       KC_PGDN),       // FN13 = RAlt   with tap PgDn
@@ -463,11 +469,8 @@ const action_t fn_actions_13[] PROGMEM = {
 
 
 #define KEYMAPS_SIZE        (sizeof(keymaps)       / sizeof(keymaps[0]))
-#define FN_ACTIONS_SIZE     (sizeof(fn_actions)    / sizeof(fn_actions[0]))
-#define FN_ACTIONS_3_SIZE   (sizeof(fn_actions_3)  / sizeof(fn_actions_3[0]))
+#define FN_ACTIONS_0_SIZE   (sizeof(fn_actions_0)  / sizeof(fn_actions_0[0]))
 #define FN_ACTIONS_4_SIZE   (sizeof(fn_actions_4)  / sizeof(fn_actions_4[0]))
-#define FN_ACTIONS_9_SIZE   (sizeof(fn_actions_9)  / sizeof(fn_actions_9[0]))
-#define FN_ACTIONS_13_SIZE  (sizeof(fn_actions_13) / sizeof(fn_actions_13[0]))
 
 /*
  * translates Fn keycode to action
@@ -481,7 +484,7 @@ action_t keymap_fn_to_action(uint8_t keycode)
 
     if (       layer == 4 && FN_INDEX(keycode) < FN_ACTIONS_4_SIZE) {
         return (action_t)pgm_read_word(&fn_actions_4[FN_INDEX(keycode)]);
-    } else if (FN_INDEX(keycode) < FN_ACTIONS_SIZE) {
+    } else if (FN_INDEX(keycode) < FN_ACTIONS_0_SIZE) {
         // by default, use fn_actions from default layer 0
         // this is needed to get mapping for same key, that was used switch to some layer,
         // to have possibility to switch layers back
