@@ -111,14 +111,14 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KEYMAP(  // Layer 0 : default
         ESC ,F1  ,F2  ,F3  ,F4  ,F5  ,F6  ,F7  ,F8  ,       F9  ,F10 ,F11 ,F12 ,PSCR,SLCK,PAUS,NLCK,EXEC,
     //                ;    !    #    {    }                      [    ]    *    (    )    =
-                 BSLS,1   ,2   ,3   ,4   ,FN8 ,                  FN9 ,7   ,8   ,9   ,0   ,EQL ,
-                 MINS,Q   ,W   ,E   ,R   ,T   ,                  Y   ,U   ,I   ,O   ,P   ,LBRC,
-                 FN21,FN1 ,FN2 ,FN3 ,FN4 ,G   ,                  H   ,J   ,K   ,L   ,SCLN,FN22,
-                 FN20,Z   ,X   ,C   ,V   ,B   ,                  N   ,M   ,COMM,DOT ,SLSH,RBRC,
+                 NO  ,1   ,2   ,3   ,4   ,FN28,                  FN29,7   ,8   ,9   ,0   ,EQL ,
+                 NO  ,Q   ,W   ,E   ,R   ,T   ,                  Y   ,U   ,I   ,O   ,P   ,FN9 ,
+                 FN11,FN21,FN22,FN23,FN24,G   ,                  H   ,J   ,K   ,L   ,SCLN,FN12,
+                 FN10,Z   ,X   ,C   ,V   ,B   ,                  N   ,M   ,COMM,DOT ,SLSH,BSLS,
                       CAPS,SLCK,HOME,END ,                            LEFT,UP  ,DOWN,RGHT,
                                           NO  ,FN31,        PGUP,NO  ,
-                                               FN23,        FN24,
-                                     FN25,FN26,FN27,        FN28,FN29,FN30
+                                               FN12,        FN13,
+                                     FN14,FN15,FN16,        FN17,FN18,FN19
     ),
 
     KEYMAP(  // Layer1: numpad
@@ -159,10 +159,10 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     KEYMAP(  // Layer4: unconvenient keys on right hand
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,       TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,  // in Workman right hand will be:
-                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  FN10,FN11,FN12,9   ,0   ,PPLS,            //    | { } ( ) +            | {}
-                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  7   ,6   ,5   ,LBRC,RBRC,EQL ,            //    & ^ % [ ] =            
-                 NO  ,NO  ,NO  ,NO  ,TRNS,NO  ,                  QUOT,1   ,4   ,FN13,P   ,SLSH,            //    ' ! $ " ; slash          ''  i
-                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  3   ,LBRC,RBRC,FN14,FN15,BSLS,            //    # [ < > ] backslash    <> 
+                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  FN1 ,FN2 ,9   ,8   ,0   ,PPLS,            //    { } ( * ) +
+                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  7   ,6   ,5   ,LBRC,RBRC,EQL ,            //    & ^ % [ ] =
+                 NO  ,NO  ,NO  ,NO  ,TRNS,NO  ,                  QUOT,1   ,4   ,FN3 ,FN6 ,P   ,            //    ' ! $ " : ;
+                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  3   ,LBRC,FN4 ,FN5 ,RBRC,FN0 ,            //    # [ < > ] |
                       NO  ,NO  ,NO  ,NO  ,                            NO  ,NO  ,NO  ,NO  ,
                                           TRNS,TRNS,        TRNS,TRNS,
                                                TRNS,        TRNS,
@@ -388,61 +388,63 @@ enum macro_id {
 /*
  * Fn action definition
  */
-const action_t fn_actions[] PROGMEM = {
-    [ 0] =  ACTION_FUNCTION(TEENSY_KEY),                    // FN0  = Teensy key
-
-    // layers
-    [ 1] =  ACTION_LAYER_TAP_KEY(1, KC_A),                  // FN1 = momentary Layer1 on F key
-    [ 2] =  ACTION_LAYER_TAP_KEY(2, KC_S),                  // FN2 = momentary Layer2 on D key
-    [ 3] =  ACTION_LAYER_TAP_KEY(3, KC_D),                  // FN3 = momentary Layer3 on S key
-    [ 4] =  ACTION_LAYER_TAP_KEY(4, KC_F),                  // FN4 = momentary Layer4 on A key
-
-    [ 8] =  ACTION_LAYER_TAP_KEY(5, KC_5),                  // FN8 = momentary Layer5 on 5 key
-    [ 9] =  ACTION_LAYER_TAP_KEY(5, KC_6),                  // FN9 = momentary Layer5 on 6 key
-
-    //[ 5] =  ACTION_LAYER_TAP_KEY(5, KC_V),                  // FN17 = momentary Layer7 on V key
-    //[10] =  ACTION_MODS_KEY(MOD_LSFT, KC_MINS),             // FN10 = Shifted Minus -- \ in Workman
-    //[18] =  ACTION_FUNCTION_TAP(L_CTRL_ALT_NO),             // FN18 = momentary Layer8+CTRL+ALT on NO
-    //[19] =  ACTION_FUNCTION_TAP(R_CTRL_ALT_PGUP),           // FN19 = momentary Layer8+CTRL+ALT on PGUP
+const action_t fn_actions_0[] PROGMEM = {
+    //[ 5] =  ACTION_LAYER_TAP_KEY(5, KC_V),                      // FN17 = momentary Layer7 on V key
+    //[10] =  ACTION_MODS_KEY(MOD_LSFT, KC_MINS),                 // FN10 = Shifted Minus -- \ in Workman
+    //[18] =  ACTION_FUNCTION_TAP(L_CTRL_ALT_NO),                 // FN18 = momentary Layer8+CTRL+ALT on NO
+    //[19] =  ACTION_FUNCTION_TAP(R_CTRL_ALT_PGUP),               // FN19 = momentary Layer8+CTRL+ALT on PGUP
 
     // modified/shifted/inverted
-    //[20] =  ACTION_MODS_KEY(MOD_LSFT, KC_SLCK),             // FN22 = Shifted ScrollLock
-    [20] =  ACTION_MODS_KEY(MOD_LSFT, KC_GRV),              // FN20 = Inverted `/~ pair
+    //[20] =  ACTION_MODS_KEY(MOD_LSFT, KC_SLCK),                 // FN22 = Shifted ScrollLock
+    [ 9] =  ACTION_MODS_KEY(MOD_LSFT,           KC_LBRC),       // FN9
+    [10] =  ACTION_MODS_KEY(MOD_LSFT,           KC_GRV),        // FN10 = Inverted `/~ pair
 
-    // duai-role
-    [21] =  ACTION_MODS_TAP_KEY(MOD_LSFT, KC_TAB),          // FN21 = LShift with tap Tab
-    [22] =  ACTION_MODS_TAP_KEY(MOD_RSFT, KC_QUOT),         // FN22 = RShift with tap quotes
+    // dual-role
+    [11] =  ACTION_MODS_TAP_KEY(MOD_LSFT,       KC_TAB),        // FN11 = LShift with tap Tab
+    [12] =  ACTION_MODS_TAP_KEY(MOD_RSFT,       KC_MINS),       // FN12 = RShift with tap -/_
     // thumbs section
-    [23] =  ACTION_MODS_TAP_KEY(MOD_LALT, KC_NO),           // FN23 = LAlt   with tap Escape
-    [24] =  ACTION_MODS_TAP_KEY(MOD_RALT, KC_PGDN),         // FN24 = RAlt   with tap PgDn
-    [25] =  ACTION_MODS_TAP_KEY(MOD_LCTL, KC_BSPC),         // FN25 = LShift with tap BackSpace
-    [26] =  ACTION_MODS_TAP_KEY(MOD_LSFT, KC_DEL),          // FN26 = LCtrl  with tap Delete
-    [27] =  ACTION_MODS_TAP_KEY(MOD_LGUI, KC_ESC),          // FN27 = LGui   with tap Escape
-    [28] =  ACTION_MODS_TAP_KEY(MOD_RGUI, KC_INS),          // FN28 = RGui   with tap Ins
-    [29] =  ACTION_MODS_TAP_KEY(MOD_RSFT, KC_ENT),          // FN29 = RShift with tap Enter
-    [30] =  ACTION_MODS_TAP_KEY(MOD_RCTL, KC_SPC),          // FN30 = RCtrl  with tap Space
+    [12] =  ACTION_MODS_TAP_KEY(MOD_LALT,       KC_NO),         // FN12 = LAlt   with tap Escape
+    [13] =  ACTION_MODS_TAP_KEY(MOD_RALT,       KC_PGDN),       // FN13 = RAlt   with tap PgDn
+    [14] =  ACTION_MODS_TAP_KEY(MOD_LCTL,       KC_BSPC),       // FN14 = LShift with tap BackSpace
+    [15] =  ACTION_MODS_TAP_KEY(MOD_LSFT,       KC_DEL),        // FN15 = LCtrl  with tap Delete
+    [16] =  ACTION_MODS_TAP_KEY(MOD_LGUI,       KC_ESC),        // FN16 = LGui   with tap Escape
+    [17] =  ACTION_MODS_TAP_KEY(MOD_RGUI,       KC_INS),        // FN17 = RGui   with tap Ins
+    [18] =  ACTION_MODS_TAP_KEY(MOD_RSFT,       KC_ENT),        // FN18 = RShift with tap Enter
+    [19] =  ACTION_MODS_TAP_KEY(MOD_RCTL,       KC_SPC),        // FN19 = RCtrl  with tap Space
 
-    [31] =  ACTION_LAYER_SET(0, ON_BOTH),                   // FN31 = set Layer0
+    // layers
+    [21] =  ACTION_LAYER_TAP_KEY(1, KC_A),                      // FN21 = momentary Layer1 on F key
+    [22] =  ACTION_LAYER_TAP_KEY(2, KC_S),                      // FN22 = momentary Layer2 on D key
+    [23] =  ACTION_LAYER_TAP_KEY(3, KC_D),                      // FN23 = momentary Layer3 on S key
+    [24] =  ACTION_LAYER_TAP_KEY(4, KC_F),                      // FN24 = momentary Layer4 on A key
+
+    [28] =  ACTION_LAYER_TAP_KEY(5, KC_5),                      // FN28 = momentary Layer5 on 5 key
+    [29] =  ACTION_LAYER_TAP_KEY(5, KC_6),                      // FN29 = momentary Layer5 on 6 key
+
+    // system hacks
+    [30] =  ACTION_FUNCTION(TEENSY_KEY),                        // FN30 = Teensy key
+    [31] =  ACTION_LAYER_SET(0, ON_BOTH),                       // FN31 = set Layer0
 };
 
 const action_t fn_actions_4[] PROGMEM = {
-    [10] =  ACTION_MODS_KEY(MOD_LSFT,          KC_BSLS),    // FN10
-    [11] =  ACTION_MODS_KEY(MOD_LSFT,          KC_LBRC),    // FN11
-    [12] =  ACTION_MODS_KEY(MOD_LSFT,          KC_RBRC),    // FN12
-    [13] =  ACTION_MODS_KEY(MOD_LSFT,          KC_QUOT),    // FN13
-    [14] =  ACTION_MODS_KEY(MOD_LSFT,          KC_COMM),    // FN14
-    [15] =  ACTION_MODS_KEY(MOD_LSFT,          KC_DOT),     // FN15
+    [ 0] =  ACTION_MODS_KEY(MOD_LSFT,           KC_BSLS),       // FN0
+    [ 1] =  ACTION_MODS_KEY(MOD_LSFT,           KC_LBRC),       // FN1
+    [ 2] =  ACTION_MODS_KEY(MOD_LSFT,           KC_RBRC),       // FN2
+    [ 3] =  ACTION_MODS_KEY(MOD_LSFT,           KC_QUOT),       // FN3
+    [ 4] =  ACTION_MODS_KEY(MOD_LSFT,           KC_COMM),       // FN4
+    [ 5] =  ACTION_MODS_KEY(MOD_LSFT,           KC_DOT),        // FN5
+    [ 6] =  ACTION_MODS_KEY(MOD_LSFT,           KC_P),          // FN6
     /*
-    [ 6] =  ACTION_MODS_KEY(MOD_LSFT,          KC_P6),      // FN6  = Alt+6
-    [ 7] =  ACTION_MODS_KEY(MOD_LSFT,          KC_P7),      // FN7  = Alt+7
-    [ 8] =  ACTION_MODS_KEY(MOD_LSFT,          KC_P8),      // FN8  = Alt+8
-    [ 9] =  ACTION_MODS_KEY(MOD_LSFT,          KC_P9),      // FN9  = Alt+9
-    [10] =  ACTION_MODS_KEY(MOD_LSFT,          KC_TAB),     // FN10 = Ctrl+Shift+Tab
-    [11] =  ACTION_MODS_KEY(MOD_LSFT,          KC_TAB),     // FN11 = Ctrl+Tab
-    [12] =  ACTION_MODS_KEY(MOD_LSFT,          KC_PGUP),    // FN12 = Ctrl+Shift+PgUp
-    [13] =  ACTION_MODS_KEY(MOD_LSFT,          KC_PGDN),    // FN13 = Ctrl+Shift+PgDn
-    [14] =  ACTION_MODS_KEY(MOD_LSFT,          KC_PMNS),    // FN14 = Ctrl+Pad Minus
-    [15] =  ACTION_MODS_KEY(MOD_LSFT,          KC_PPLS),    // FN15 = Ctrl+Pad Plus
+    [ 6] =  ACTION_MODS_KEY(MOD_LSFT,           KC_P6),         // FN6  = Alt+6
+    [ 7] =  ACTION_MODS_KEY(MOD_LSFT,           KC_P7),         // FN7  = Alt+7
+    [ 8] =  ACTION_MODS_KEY(MOD_LSFT,           KC_P8),         // FN8  = Alt+8
+    [ 9] =  ACTION_MODS_KEY(MOD_LSFT,           KC_P9),         // FN9  = Alt+9
+    [10] =  ACTION_MODS_KEY(MOD_LSFT,           KC_TAB),        // FN10 = Ctrl+Shift+Tab
+    [11] =  ACTION_MODS_KEY(MOD_LSFT,           KC_TAB),        // FN11 = Ctrl+Tab
+    [12] =  ACTION_MODS_KEY(MOD_LSFT,           KC_PGUP),       // FN12 = Ctrl+Shift+PgUp
+    [13] =  ACTION_MODS_KEY(MOD_LSFT,           KC_PGDN),       // FN13 = Ctrl+Shift+PgDn
+    [14] =  ACTION_MODS_KEY(MOD_LSFT,           KC_PMNS),       // FN14 = Ctrl+Pad Minus
+    [15] =  ACTION_MODS_KEY(MOD_LSFT,           KC_PPLS),       // FN15 = Ctrl+Pad Plus
     */
 };
 
@@ -479,15 +481,12 @@ action_t keymap_fn_to_action(uint8_t keycode)
 
     if (       layer == 4 && FN_INDEX(keycode) < FN_ACTIONS_4_SIZE) {
         return (action_t)pgm_read_word(&fn_actions_4[FN_INDEX(keycode)]);
-    } else if (layer == 9 && FN_INDEX(keycode) < FN_ACTIONS_9_SIZE) {
-        return (action_t)pgm_read_word(&fn_actions_9[FN_INDEX(keycode)]);
-    } else if (layer == 13 && FN_INDEX(keycode) < FN_ACTIONS_13_SIZE) {
-        return (action_t)pgm_read_word(&fn_actions_13[FN_INDEX(keycode)]);
     } else if (FN_INDEX(keycode) < FN_ACTIONS_SIZE) {
         // by default, use fn_actions from default layer 0
         // this is needed to get mapping for same key, that was used switch to some layer,
         // to have possibility to switch layers back
-        return (action_t)pgm_read_word(&fn_actions[FN_INDEX(keycode)]);
+        // to get this working, FNxx to switch layers should be as high as possible and should not be re-defined on other layers
+        return (action_t)pgm_read_word(&fn_actions_0[FN_INDEX(keycode)]);
     }
 
     return action;
