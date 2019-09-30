@@ -16,6 +16,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include <stdint.h>
 #include <stdbool.h>
+#include "bootloader.h"
 #include "keycode.h"
 #include "action.h"
 #include "action_code.h"
@@ -124,7 +125,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,       TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
                  FN31,NO  ,NO  ,NO  ,NO  ,NO  ,                  NLCK,PSLS,PAST,PAST,PMNS,BSPC,
                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  NO  ,P7  ,P8  ,P9  ,PMNS,PGUP,
-                 NO  ,NO  ,NO  ,NO  ,FN1 ,NO  ,                  NO  ,P4  ,P5  ,P6  ,PPLS,PGDN,
+                 NO  ,NO  ,NO  ,NO  ,TRNS,NO  ,                  NO  ,P4  ,P5  ,P6  ,PPLS,PGDN,
                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  NO  ,P1  ,P2  ,P3  ,PPLS,PENT,
                       NO  ,FN31,NO  ,NO  ,                            P0  ,PDOT,SLSH,PENT,
                                           TRNS,TRNS,        TRNS,TRNS,
@@ -136,7 +137,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,       TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
                  FN31,NO  ,NO  ,NO  ,NO  ,NO  ,                  MPLY,MPRV,MNXT,VOLD,VOLU,MUTE,
                  NO  ,NO  ,NO  ,NO  ,ACL0,NO  ,                  BTN2,WH_L,WH_U,WH_D,WH_R,PGUP,
-                 NO  ,NO  ,NO  ,FN2 ,ACL1,NO  ,                  BTN1,MS_L,MS_U,MS_D,MS_R,PGDN,
+                 NO  ,NO  ,NO  ,TRNS,ACL1,NO  ,                  BTN1,MS_L,MS_U,MS_D,MS_R,PGDN,
                  NO  ,NO  ,NO  ,NO  ,ACL2,NO  ,                  BTN3,HOME,END ,DEL ,INS ,NO  ,
                       NO  ,FN31,NO  ,NO  ,                            NO  ,NO  ,NO  ,NO  ,
                                           TRNS,TRNS,        TRNS,TRNS,
@@ -148,7 +149,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,       TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
                  FN0 ,NO  ,NO  ,NO  ,NO  ,NO  ,                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,
                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  NO  ,F1  ,F2  ,F3  ,F4  ,PGUP,
-                 NO  ,NO  ,FN3 ,NO  ,NO  ,NO  ,                  NO  ,F5  ,F6  ,F7  ,F8  ,PGDN,
+                 NO  ,NO  ,TRNS,NO  ,NO  ,NO  ,                  NO  ,F5  ,F6  ,F7  ,F8  ,PGDN,
                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  NO  ,F9  ,F10 ,F11 ,F12 ,APP ,
                       NO  ,FN31,NO  ,NO  ,                            NO  ,NO  ,NO  ,NO  ,
                                           TRNS,TRNS,        TRNS,TRNS,
@@ -394,15 +395,6 @@ const action_t fn_actions[] PROGMEM = {
     [31] =  ACTION_LAYER_SET(0, ON_BOTH),                   // FN31 = set Layer0
 };
 
-const action_t fn_actions_3[] PROGMEM = {
-    [ 1] =  ACTION_MODS_KEY(MOD_LSFT, KC_BSLS),             // FN1  = Shifted BackSlash // " in Workman
-    [ 2] =  ACTION_MODS_KEY(MOD_LSFT, KC_MINS),             // FN2  = Shifted Minus     // \ in Workman
-    [ 3] =  ACTION_MODS_KEY(MOD_LSFT, KC_COMM),             // FN3  = Shifted comma     // < in Workman
-    [ 4] =  ACTION_MODS_KEY(MOD_LSFT, KC_DOT),              // FN4  = Shifted dot       // > in Workman
-    [ 5] =  ACTION_MODS_KEY(MOD_LSFT, KC_SLSH),             // FN5  = Shifted slash     // ? in Workman
-    [ 6] =  ACTION_MODS_KEY(MOD_LSFT, KC_LBRC),             // FN6  = Shifted [         // % in Workman
-};
-
 const action_t fn_actions_7[] PROGMEM = {
     [ 0] =  ACTION_MODS_KEY(MOD_LCTL,          KC_P0),      // FN0  = Ctrl+0
     [ 1] =  ACTION_MODS_KEY(MOD_LALT,          KC_P1),      // FN1  = Alt+1
@@ -453,9 +445,7 @@ action_t keymap_fn_to_action(uint8_t keycode)
 
     action_t action = (action_t)ACTION_NO;
 
-    if (       layer == 3 && FN_INDEX(keycode) < FN_ACTIONS_3_SIZE) {
-        return (action_t)pgm_read_word(&fn_actions_3[FN_INDEX(keycode)]);
-    } else if (layer == 7 && FN_INDEX(keycode) < FN_ACTIONS_7_SIZE) {
+    if (       layer == 7 && FN_INDEX(keycode) < FN_ACTIONS_7_SIZE) {
         return (action_t)pgm_read_word(&fn_actions_7[FN_INDEX(keycode)]);
     } else if (layer == 9 && FN_INDEX(keycode) < FN_ACTIONS_9_SIZE) {
         return (action_t)pgm_read_word(&fn_actions_9[FN_INDEX(keycode)]);
@@ -478,10 +468,10 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
     // print("opt = "); phex(opt); print("\n");
 
     if (id == TEENSY_KEY) {
-//        clear_keyboard();
+        clear_keyboard();
         print("\n\nJump to bootloader... ");
-//        _delay_ms(50);
-//        bootloader_jump(); // should not return
+        _delay_ms(50);
+        bootloader_jump(); // should not return
         print("not supported.\n");
     }
 
