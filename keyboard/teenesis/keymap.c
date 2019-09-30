@@ -135,7 +135,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     KEYMAP(  // Layer2: F-keys + PgUp/PgDn on right hand
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,       TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-                 FN0 ,NO  ,NO  ,NO  ,NO  ,NO  ,                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,
+                 FN30,NO  ,NO  ,NO  ,NO  ,NO  ,                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,
                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  NO  ,F1  ,F2  ,F3  ,F4  ,PGUP,
                  NO  ,NO  ,TRNS,NO  ,NO  ,NO  ,                  NO  ,F5  ,F6  ,F7  ,F8  ,PGDN,
                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  NO  ,F9  ,F10 ,F11 ,F12 ,APP ,
@@ -182,9 +182,9 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                  NO  ,F5  ,F6  ,F7  ,F8  ,NO  ,                  NO  ,F17 ,F18 ,F19 ,F20 ,NO  ,
                  NO  ,F9  ,F10 ,F11 ,F12 ,NO  ,                  NO  ,F21 ,F22 ,F23 ,F24 ,NO  ,
                       NO  ,NO  ,NO  ,NO  ,                            NO  ,NO  ,NO  ,NO  ,
-                                          TRNS,TRNS,        TRNS,TRNS,
+                                          TRNS,TRNS,        TRNS,FN30,
                                                TRNS,        TRNS,
-                                     TRNS,TRNS,TRNS,        TRNS,TRNS,TRNS
+                                     TRNS,TRNS,TRNS,        TRNS,TRNS,FN30
     ),
 
     /*
