@@ -36,6 +36,8 @@ Project located at <https://github.com/benblazak/ergodox-firmware>
 #define MATRIX_ROWS 15
 #define MATRIX_COLS 7
 
+#define BOOTLOADER_SIZE         512
+
 #define MOUSEKEY_DELAY          100
 #define MOUSEKEY_INTERVAL       20
 #define MOUSEKEY_MAX_SPEED      3
