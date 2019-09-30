@@ -177,7 +177,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     KEYMAP(  // Layer5: Macros, media and full F-keys
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,       TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-                 FN1 ,NO  ,NO  ,NO  ,NO  ,TRNS,                  TRNS,NO  ,NO  ,NO  ,NO  ,SLEP,
+                 FN1 ,NO  ,NO  ,NO  ,NO  ,TRNS,                  TRNS,MUTE,VOLU,VOLD,NO  ,SLEP,
                  FN2 ,F1  ,F2  ,F3  ,F4  ,NO  ,                  NO  ,F13 ,F14 ,F15 ,F16 ,NO  ,
                  NO  ,F5  ,F6  ,F7  ,F8  ,NO  ,                  NO  ,F17 ,F18 ,F19 ,F20 ,NO  ,
                  NO  ,F9  ,F10 ,F11 ,F12 ,NO  ,                  NO  ,F21 ,F22 ,F23 ,F24 ,NO  ,
@@ -379,7 +379,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* id for user defined functions & macros */
 enum function_id {
     TEENSY_KEY,
-    CUSTOM_KEY,
+    INVERTED_GRV,
     L_CTRL_ALT_NO,
     R_CTRL_ALT_PGUP,
 };
@@ -403,7 +403,7 @@ const action_t fn_actions_0[] PROGMEM = {
     // modified/shifted/inverted
     //[20] =  ACTION_MODS_KEY(MOD_LSFT, KC_SLCK),                 // FN22 = Shifted ScrollLock
     [ 8] =  ACTION_MODS_KEY(MOD_LSFT,           KC_LBRC),       // FN8
-    [ 9] =  ACTION_MODS_KEY(MOD_LSFT,           KC_GRV),        // FN9  = Inverted `/~ pair
+    [ 9] =  ACTION_FUNCTION(INVERTED_GRV),                      // FN9  = Inverted `/~ pair
 
     // dual-role
     [10] =  ACTION_MODS_TAP_KEY(MOD_LSFT,       KC_TAB),        // FN10 = LShift with tap Tab
@@ -454,20 +454,6 @@ const action_t fn_actions_4[] PROGMEM = {
     */
 };
 
-const action_t fn_actions_9[] PROGMEM = {
-    [ 5] =  ACTION_LAYER_SET(9, ON_BOTH),                   // FN5  = set Layer9
-};
-
-const action_t fn_actions_13[] PROGMEM = {
-    [ 0] =  ACTION_FUNCTION(TEENSY_KEY),                    // FN0  = Teensy key
-    [ 1] =  ACTION_MACRO(XMONAD_RESET),                     // FN1  = xmonad-reanimator
-    [ 2] =  ACTION_MACRO(PASSWORD1),                        // FN2  = default password
-    [ 3] =  ACTION_MACRO(PASSWORD2),                        // FN3  = other password
-    [ 4] =  ACTION_MACRO(PASSWORD3),                        // FN4  = mega password
-    [ 5] =  ACTION_LAYER_SET(9, ON_BOTH),                   // FN5  = set Layer9
-};
-
-
 #define KEYMAPS_SIZE        (sizeof(keymaps)       / sizeof(keymaps[0]))
 #define FN_ACTIONS_0_SIZE   (sizeof(fn_actions_0)  / sizeof(fn_actions_0[0]))
 #define FN_ACTIONS_4_SIZE   (sizeof(fn_actions_4)  / sizeof(fn_actions_4[0]))
@@ -495,6 +481,7 @@ action_t keymap_fn_to_action(uint8_t keycode)
     return action;
 }
 
+uint8_t orig_mods, real_mods, shift_pressed;
 void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
     // print("action_function called\n");
@@ -520,6 +507,29 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
 
         bootloader_jump(); // should not return
         print("not supported.\n");
+    }
+
+    if (id == INVERTED_GRV) {
+        orig_mods = real_mods = get_mods();
+        shift_pressed = real_mods && 0x22;              // both SHIFTs
+
+        if (shift_pressed) {
+            real_mods &= ~0x22;                         // remove bits for both SHIFTs
+        } else {
+            real_mods |= 0x02;                          // emulate LEFT SHIFT pressed
+        }
+
+        set_mods(real_mods);
+        send_keyboard_report();
+
+        if (record->event.pressed) {
+            register_code(KC_GRV);
+        } else {
+            unregister_code(KC_GRV);
+        }
+
+        set_mods(orig_mods);
+        send_keyboard_report();
     }
 
     if (   id == L_CTRL_ALT_NO
