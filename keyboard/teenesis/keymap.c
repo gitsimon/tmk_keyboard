@@ -121,13 +121,19 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                      FN14,FN15,FN16,        FN17,FN18,FN19
     ),
 
-    KEYMAP(  // Layer1: numpad
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,       TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  NLCK,PSLS,PAST,PAST,PMNS,BSPC,
-                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  NO  ,P7  ,P8  ,P9  ,PMNS,PGUP,
-                 NO  ,TRNS,NO  ,NO  ,NO  ,NO  ,                  NO  ,P4  ,P5  ,P6  ,PPLS,PGDN,
-                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  NO  ,P1  ,P2  ,P3  ,PPLS,PENT,
-                      NO  ,NO  ,NO  ,NO  ,                            P0  ,PDOT,SLSH,PENT,
+    KEYMAP(  // Layer1: unconvenient keys on right hand
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,       TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,  // in Workman right hand will be:
+                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  FN0 ,FN1 ,FN2 ,9   ,0   ,EQL ,            //    | { } ( ) =
+                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  7   ,MINS,FN5 ,LBRC,RBRC,PPLS,            //    & - > [ ] +
+                 NO  ,TRNS,NO  ,NO  ,NO  ,NO  ,                  QUOT,1   ,4   ,FN3 ,FN6 ,P   ,            //    ' ! $ " : ;
+                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  3   ,6   ,FN4 ,FN5 ,5   ,8   ,            //    # ^ < > % *
+                 /*
+                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  FN1 ,FN2 ,9   ,8   ,0   ,PPLS,            //    { } ( * ) +
+                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  7   ,6   ,5   ,LBRC,RBRC,EQL ,            //    & ^ % [ ] =
+                 NO  ,NO  ,NO  ,NO  ,TRNS,NO  ,                  QUOT,1   ,4   ,FN3 ,FN6 ,P   ,            //    ' ! $ " : ;
+                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  3   ,LBRC,FN4 ,FN5 ,RBRC,FN0 ,            //    # [ < > ] |
+                 */
+                      NO  ,NO  ,NO  ,NO  ,                            NO  ,NO  ,NO  ,NO  ,
                                           TRNS,TRNS,        TRNS,TRNS,
                                                TRNS,        TRNS,
                                      TRNS,TRNS,TRNS,        TRNS,TRNS,TRNS
@@ -157,19 +163,13 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                      TRNS,TRNS,TRNS,        TRNS,TRNS,TRNS
     ),
 
-    KEYMAP(  // Layer4: unconvenient keys on right hand
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,       TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,  // in Workman right hand will be:
-                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  FN0 ,FN1 ,FN2 ,9   ,0   ,EQL ,            //    | { } ( ) =
-                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  7   ,MINS,FN5 ,LBRC,RBRC,PPLS,            //    & - > [ ] +
-                 NO  ,NO  ,NO  ,NO  ,TRNS,NO  ,                  QUOT,1   ,4   ,FN3 ,FN6 ,P   ,            //    ' ! $ " : ;
-                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  3   ,6   ,FN4 ,FN5 ,5   ,8   ,            //    # ^ < > % *
-                 /*
-                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  FN1 ,FN2 ,9   ,8   ,0   ,PPLS,            //    { } ( * ) +
-                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  7   ,6   ,5   ,LBRC,RBRC,EQL ,            //    & ^ % [ ] =
-                 NO  ,NO  ,NO  ,NO  ,TRNS,NO  ,                  QUOT,1   ,4   ,FN3 ,FN6 ,P   ,            //    ' ! $ " : ;
-                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  3   ,LBRC,FN4 ,FN5 ,RBRC,FN0 ,            //    # [ < > ] |
-                 */
-                      NO  ,NO  ,NO  ,NO  ,                            NO  ,NO  ,NO  ,NO  ,
+    KEYMAP(  // Layer4: numpad
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,       TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  NLCK,PSLS,PAST,PAST,PMNS,BSPC,
+                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  NO  ,P7  ,P8  ,P9  ,PMNS,PGUP,
+                 NO  ,NO  ,NO  ,NO  ,TRNS,NO  ,                  NO  ,P4  ,P5  ,P6  ,PPLS,PGDN,
+                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  NO  ,P1  ,P2  ,P3  ,PPLS,PENT,
+                      NO  ,NO  ,NO  ,NO  ,                            P0  ,PDOT,SLSH,PENT,
                                           TRNS,TRNS,        TRNS,TRNS,
                                                TRNS,        TRNS,
                                      TRNS,TRNS,TRNS,        TRNS,TRNS,TRNS
@@ -433,7 +433,7 @@ const action_t fn_actions_0[] PROGMEM = {
     [31] =  ACTION_LAYER_SET(0, ON_BOTH),                       // FN31 = set Layer0
 };
 
-const action_t fn_actions_4[] PROGMEM = {
+const action_t fn_actions_1[] PROGMEM = {
     [ 0] =  ACTION_MODS_KEY(MOD_LSFT,           KC_BSLS),       // FN0
     [ 1] =  ACTION_MODS_KEY(MOD_LSFT,           KC_LBRC),       // FN1
     [ 2] =  ACTION_MODS_KEY(MOD_LSFT,           KC_RBRC),       // FN2
@@ -452,7 +452,7 @@ const action_t fn_actions_5[] PROGMEM = {
 
 #define KEYMAPS_SIZE        (sizeof(keymaps)       / sizeof(keymaps[0]))
 #define FN_ACTIONS_0_SIZE   (sizeof(fn_actions_0)  / sizeof(fn_actions_0[0]))
-#define FN_ACTIONS_4_SIZE   (sizeof(fn_actions_4)  / sizeof(fn_actions_4[0]))
+#define FN_ACTIONS_1_SIZE   (sizeof(fn_actions_1)  / sizeof(fn_actions_1[0]))
 #define FN_ACTIONS_5_SIZE   (sizeof(fn_actions_5)  / sizeof(fn_actions_5[0]))
 
 /*
@@ -465,8 +465,8 @@ action_t keymap_fn_to_action(uint8_t keycode)
 
     action_t action = (action_t)ACTION_NO;
 
-    if (layer == 4 && FN_INDEX(keycode) < FN_ACTIONS_4_SIZE) {
-        return (action_t)pgm_read_word(&fn_actions_4[FN_INDEX(keycode)]);
+    if (layer == 1 && FN_INDEX(keycode) < FN_ACTIONS_1_SIZE) {
+        return (action_t)pgm_read_word(&fn_actions_1[FN_INDEX(keycode)]);
     } else if (layer == 5 && FN_INDEX(keycode) < FN_ACTIONS_5_SIZE) {
         return (action_t)pgm_read_word(&fn_actions_5[FN_INDEX(keycode)]);
     } else if (FN_INDEX(keycode) < FN_ACTIONS_0_SIZE) {
