@@ -177,7 +177,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     KEYMAP(  // Layer5: Macros, media and full F-keys
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,       TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-                 FN1 ,NO  ,NO  ,NO  ,NO  ,TRNS,                  TRNS,MUTE,VOLU,VOLD,NO  ,FN3 ,
+                 FN1 ,NO  ,NO  ,NO  ,NO  ,TRNS,                  TRNS,MUTE,VOLD,VOLU,NO  ,FN3 ,
                  FN2 ,F1  ,F2  ,F3  ,F4  ,NO  ,                  NO  ,F13 ,F14 ,F15 ,F16 ,FN4 ,
                  NO  ,F5  ,F6  ,F7  ,F8  ,NO  ,                  NO  ,F17 ,F18 ,F19 ,F20 ,NO  ,
                  NO  ,F9  ,F10 ,F11 ,F12 ,NO  ,                  NO  ,F21 ,F22 ,F23 ,F24 ,NO  ,
