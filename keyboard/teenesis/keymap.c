@@ -177,14 +177,14 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     KEYMAP(  // Layer5: Macros, media and full F-keys
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,       TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-                 FN1 ,NO  ,NO  ,NO  ,NO  ,TRNS,                  TRNS,MUTE,VOLU,VOLD,NO  ,SLEP,
-                 FN2 ,F1  ,F2  ,F3  ,F4  ,NO  ,                  NO  ,F13 ,F14 ,F15 ,F16 ,NO  ,
+                 FN1 ,NO  ,NO  ,NO  ,NO  ,TRNS,                  TRNS,MUTE,VOLU,VOLD,NO  ,FN3 ,
+                 FN2 ,F1  ,F2  ,F3  ,F4  ,NO  ,                  NO  ,F13 ,F14 ,F15 ,F16 ,FN4 ,
                  NO  ,F5  ,F6  ,F7  ,F8  ,NO  ,                  NO  ,F17 ,F18 ,F19 ,F20 ,NO  ,
                  NO  ,F9  ,F10 ,F11 ,F12 ,NO  ,                  NO  ,F21 ,F22 ,F23 ,F24 ,NO  ,
                       NO  ,NO  ,NO  ,NO  ,                            NO  ,NO  ,NO  ,NO  ,
                                           TRNS,TRNS,        TRNS,FN30,
                                                TRNS,        TRNS,
-                                     TRNS,TRNS,TRNS,        TRNS,TRNS,FN30
+                                     TRNS,TRNS,TRNS,        SLEP,TRNS,FN30
     ),
 
     /*
@@ -385,10 +385,11 @@ enum function_id {
 };
 
 enum macro_id {
-    XMONAD_RESET,
+    PASSWORD0,
     PASSWORD1,
     PASSWORD2,
     PASSWORD3,
+    PASSWORD4,
 };
 
 /*
@@ -440,23 +441,19 @@ const action_t fn_actions_4[] PROGMEM = {
     [ 4] =  ACTION_MODS_KEY(MOD_LSFT,           KC_COMM),       // FN4
     [ 5] =  ACTION_MODS_KEY(MOD_LSFT,           KC_DOT),        // FN5
     [ 6] =  ACTION_MODS_KEY(MOD_LSFT,           KC_P),          // FN6
-    /*
-    [ 6] =  ACTION_MODS_KEY(MOD_LSFT,           KC_P6),         // FN6  = Alt+6
-    [ 7] =  ACTION_MODS_KEY(MOD_LSFT,           KC_P7),         // FN7  = Alt+7
-    [ 8] =  ACTION_MODS_KEY(MOD_LSFT,           KC_P8),         // FN8  = Alt+8
-    [ 9] =  ACTION_MODS_KEY(MOD_LSFT,           KC_P9),         // FN9  = Alt+9
-    [10] =  ACTION_MODS_KEY(MOD_LSFT,           KC_TAB),        // FN10 = Ctrl+Shift+Tab
-    [11] =  ACTION_MODS_KEY(MOD_LSFT,           KC_TAB),        // FN11 = Ctrl+Tab
-    [12] =  ACTION_MODS_KEY(MOD_LSFT,           KC_PGUP),       // FN12 = Ctrl+Shift+PgUp
-    [13] =  ACTION_MODS_KEY(MOD_LSFT,           KC_PGDN),       // FN13 = Ctrl+Shift+PgDn
-    [14] =  ACTION_MODS_KEY(MOD_LSFT,           KC_PMNS),       // FN14 = Ctrl+Pad Minus
-    [15] =  ACTION_MODS_KEY(MOD_LSFT,           KC_PPLS),       // FN15 = Ctrl+Pad Plus
-    */
+};
+
+const action_t fn_actions_5[] PROGMEM = {
+    [ 1] =  ACTION_MACRO(PASSWORD1),                            // FN1
+    [ 2] =  ACTION_MACRO(PASSWORD2),                            // FN2
+    [ 3] =  ACTION_MACRO(PASSWORD3),                            // FN3
+    [ 4] =  ACTION_MACRO(PASSWORD4),                            // FN4
 };
 
 #define KEYMAPS_SIZE        (sizeof(keymaps)       / sizeof(keymaps[0]))
 #define FN_ACTIONS_0_SIZE   (sizeof(fn_actions_0)  / sizeof(fn_actions_0[0]))
 #define FN_ACTIONS_4_SIZE   (sizeof(fn_actions_4)  / sizeof(fn_actions_4[0]))
+#define FN_ACTIONS_5_SIZE   (sizeof(fn_actions_5)  / sizeof(fn_actions_5[0]))
 
 /*
  * translates Fn keycode to action
@@ -468,8 +465,10 @@ action_t keymap_fn_to_action(uint8_t keycode)
 
     action_t action = (action_t)ACTION_NO;
 
-    if (       layer == 4 && FN_INDEX(keycode) < FN_ACTIONS_4_SIZE) {
+    if (layer == 4 && FN_INDEX(keycode) < FN_ACTIONS_4_SIZE) {
         return (action_t)pgm_read_word(&fn_actions_4[FN_INDEX(keycode)]);
+    } else if (layer == 5 && FN_INDEX(keycode) < FN_ACTIONS_5_SIZE) {
+        return (action_t)pgm_read_word(&fn_actions_5[FN_INDEX(keycode)]);
     } else if (FN_INDEX(keycode) < FN_ACTIONS_0_SIZE) {
         // by default, use fn_actions from default layer 0
         // this is needed to get mapping for same key, that was used switch to some layer,
@@ -598,13 +597,48 @@ uint8_t keymap_key_to_keycode(uint8_t layer, keypos_t key)
     }
 }
 
+#define MACRO_PASSWORD0     MACRO( \
+                                I(15), \
+                                T(E), T(X), T(A), T(M), T(P), T(L), T(E), T(ENT), \
+                            END)
+
+#define MACRO_PASSWORD1     MACRO( \
+                                I(15), \
+                                T(C), T(U), T(B), T(I), T(C), \
+                                T(R), T(U), T(B), T(I), T(C), \
+                                T(ENT), \
+                            END)
+
+#define MACRO_PASSWORD2     MACRO( \
+                                I(15), \
+                                T(C), T(U), T(B), \
+                                D(LSFT), T(MINS), U(LSFT), \
+                                T(7), T(1), T(3), T(ENT), \
+                            END)
+
+#define MACRO_PASSWORD3     MACRO( \
+                                I(15), \
+                                T(V), T(I), T(T), T(SCLN), T(V), \
+                                T(E), T(I), T(T), T(SCLN), T(V), \
+                                T(ENT), \
+                            END)
+
+#define MACRO_PASSWORD4     MACRO( \
+                                I(15), \
+                                T(V), T(I), T(T), \
+                                D(LSFT), T(MINS), \
+                                T(7), T(1), T(3), \
+                                U(LSFT), T(ENT), \
+                            END)
 
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
     if (record->event.pressed) {
-//        switch (id) {
-//            case XMONAD_RESET:  return MACRO_XMONAD_RESET;
-//            case PASSWORD1:     return MACRO_PASSWORD1;
-//        }
+        switch (id) {
+            case PASSWORD1:     return (MACRO_PASSWORD1);
+            case PASSWORD2:     return (MACRO_PASSWORD2);
+            case PASSWORD3:     return (MACRO_PASSWORD3);
+            case PASSWORD4:     return (MACRO_PASSWORD4);
+        }
     }
     return MACRO_NONE;
 }
