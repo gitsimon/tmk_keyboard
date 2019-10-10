@@ -111,7 +111,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KEYMAP(  // Layer 0 : default
         ESC ,F1  ,F2  ,F3  ,F4  ,F5  ,F6  ,F7  ,F8  ,       F9  ,F10 ,F11 ,F12 ,PSCR,SLCK,PAUS,NLCK,EXEC,
     //                ;    !    #    {    }                      [    ]    *    (    )    =
-                 NO  ,1   ,2   ,3   ,4   ,FN28,                  FN29,7   ,8   ,9   ,0   ,EQL ,
+                 FN25,1   ,2   ,3   ,4   ,FN28,                  FN29,7   ,8   ,9   ,0   ,EQL ,
                  NO  ,Q   ,W   ,E   ,R   ,T   ,                  Y   ,U   ,I   ,O   ,P   ,FN8 ,
                  FN10,FN21,FN22,FN23,FN24,G   ,                  H   ,J   ,K   ,L   ,SCLN,FN11,
                  FN9 ,Z   ,X   ,C   ,V   ,B   ,                  N   ,M   ,COMM,DOT ,SLSH,BSLS,
@@ -182,9 +182,22 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                  NO  ,F5  ,F6  ,F7  ,F8  ,NO  ,                  NO  ,F17 ,F18 ,F19 ,F20 ,NO  ,
                  NO  ,F9  ,F10 ,F11 ,F12 ,NO  ,                  NO  ,F21 ,F22 ,F23 ,F24 ,NO  ,
                       NO  ,NO  ,NO  ,NO  ,                            NO  ,NO  ,NO  ,NO  ,
-                                          TRNS,TRNS,        TRNS,FN30,
+                                          TRNS,TRNS,        TRNS,FN6 ,
                                                TRNS,        TRNS,
                                      TRNS,TRNS,TRNS,        SLEP,TRNS,FN30
+    ),
+
+    KEYMAP(  // Layer 6 : games
+        ESC ,F1  ,F2  ,F3  ,F4  ,F5  ,F6  ,F7  ,F8  ,       F9  ,F10 ,F11 ,F12 ,PSCR,SLCK,PAUS,NLCK,EXEC,
+    //                ;    !    #    {    }                      [    ]    *    (    )    =
+                 NO  ,1   ,2   ,3   ,4   ,5   ,                  6   ,7   ,8   ,9   ,0   ,EQL ,
+                 TAB ,Q   ,W   ,E   ,R   ,T   ,                  Y   ,U   ,I   ,O   ,P   ,BSPC,
+                 LSFT,A   ,S   ,D   ,F   ,G   ,                  H   ,J   ,K   ,L   ,SCLN,RSFT,
+                 LSFT,Z   ,X   ,C   ,V   ,B   ,                  N   ,M   ,COMM,DOT ,SLSH,BSLS,
+                      CAPS,SLCK,HOME,END ,                            LEFT,UP  ,DOWN,RGHT,
+                                          NO  ,FN31,        PGUP,TRNS,
+                                               LALT,        RALT,
+                                     LCTL,DEL ,ESC ,        RGUI,ENT ,SPC
     ),
 
     /*
@@ -424,13 +437,14 @@ const action_t fn_actions_0[] PROGMEM = {
     [22] =  ACTION_LAYER_TAP_KEY(2, KC_S),                      // FN22 = momentary Layer2 on D key
     [23] =  ACTION_LAYER_TAP_KEY(3, KC_D),                      // FN23 = momentary Layer3 on S key
     [24] =  ACTION_LAYER_TAP_KEY(4, KC_F),                      // FN24 = momentary Layer4 on A key
+    [25] =  ACTION_LAYER_SET(6, ON_PRESS),                      // FN25
 
     [28] =  ACTION_LAYER_TAP_KEY(5, KC_5),                      // FN28 = momentary Layer5 on 5 key
     [29] =  ACTION_LAYER_TAP_KEY(5, KC_6),                      // FN29 = momentary Layer5 on 6 key
 
     // system hacks
     [30] =  ACTION_FUNCTION(TEENSY_KEY),                        // FN30 = Teensy key
-    [31] =  ACTION_LAYER_SET(0, ON_BOTH),                       // FN31 = set Layer0
+    [31] =  ACTION_LAYER_SET(0, ON_PRESS),                       // FN31 = set Layer0
 };
 
 const action_t fn_actions_1[] PROGMEM = {
@@ -448,6 +462,7 @@ const action_t fn_actions_5[] PROGMEM = {
     [ 2] =  ACTION_MACRO(PASSWORD2),                            // FN2
     [ 3] =  ACTION_MACRO(PASSWORD3),                            // FN3
     [ 4] =  ACTION_MACRO(PASSWORD4),                            // FN4
+    [ 9] =  ACTION_LAYER_SET(6, ON_PRESS),                      // FN4
 };
 
 #define KEYMAPS_SIZE        (sizeof(keymaps)       / sizeof(keymaps[0]))
