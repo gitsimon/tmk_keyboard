@@ -111,10 +111,10 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KEYMAP(  // Layer 0 : default
         ESC ,F1  ,F2  ,F3  ,F4  ,F5  ,F6  ,F7  ,F8  ,       F9  ,F10 ,F11 ,F12 ,PSCR,SLCK,PAUS,NLCK,EXEC,
     //                ;    !    #    {    }                      [    ]    *    (    )    =
-                 FN25,1   ,2   ,3   ,4   ,FN28,                  FN29,7   ,8   ,9   ,0   ,EQL ,
-                 NO  ,Q   ,W   ,E   ,R   ,T   ,                  Y   ,U   ,I   ,O   ,P   ,FN8 ,
+                 GRV ,1   ,2   ,3   ,4   ,FN25,                  FN26,7   ,8   ,9   ,0   ,EQL ,
+                 TAB ,Q   ,W   ,E   ,R   ,T   ,                  Y   ,U   ,I   ,O   ,P   ,LBRC,
                  FN10,FN21,FN22,FN23,FN24,G   ,                  H   ,J   ,K   ,L   ,SCLN,FN11,
-                 FN9 ,Z   ,X   ,C   ,V   ,B   ,                  N   ,M   ,COMM,DOT ,SLSH,BSLS,
+                 FN9 ,Z   ,X   ,C   ,V   ,B   ,                  N   ,M   ,COMM,DOT ,SLSH,RBRC,
                       CAPS,SLCK,HOME,END ,                            LEFT,UP  ,DOWN,RGHT,
                                           NO  ,FN31,        PGUP,NO  ,
                                                FN12,        FN13,
@@ -187,7 +187,19 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                      TRNS,TRNS,TRNS,        SLEP,TRNS,FN30
     ),
 
-    KEYMAP(  // Layer 6 : games
+    KEYMAP(  // Layer6: empty - reserved
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,       TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,
+                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,
+                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,
+                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,
+                      NO  ,NO  ,NO  ,NO  ,                            NO  ,NO  ,NO  ,NO  ,
+                                          TRNS,TRNS,        TRNS,TRNS,
+                                               TRNS,        TRNS,
+                                     TRNS,TRNS,TRNS,        TRNS,TRNS,TRNS
+    ),
+
+    KEYMAP(  // Layer7 : games
         ESC ,F1  ,F2  ,F3  ,F4  ,F5  ,F6  ,F7  ,F8  ,       F9  ,F10 ,F11 ,F12 ,PSCR,SLCK,PAUS,NLCK,EXEC,
     //                ;    !    #    {    }                      [    ]    *    (    )    =
                  NO  ,1   ,2   ,3   ,4   ,5   ,                  6   ,7   ,8   ,9   ,0   ,EQL ,
@@ -416,12 +428,12 @@ const action_t fn_actions_0[] PROGMEM = {
 
     // modified/shifted/inverted
     //[20] =  ACTION_MODS_KEY(MOD_LSFT, KC_SLCK),                 // FN22 = Shifted ScrollLock
-    [ 8] =  ACTION_MODS_KEY(MOD_LSFT,           KC_LBRC),       // FN8
+//    [ 8] =  ACTION_MODS_KEY(MOD_LSFT,           KC_LBRC),       // FN8
     [ 9] =  ACTION_FUNCTION(INVERTED_GRV),                      // FN9  = Inverted `/~ pair
 
     // dual-role
     [10] =  ACTION_MODS_TAP_KEY(MOD_LSFT,       KC_TAB),        // FN10 = LShift with tap Tab
-    [11] =  ACTION_MODS_TAP_KEY(MOD_RSFT,       KC_MINS),       // FN11 = RShift with tap -/_
+    [11] =  ACTION_MODS_TAP_KEY(MOD_RSFT,       KC_QUOT),       // FN11 = RShift with tap '/"
     // thumbs section
     [12] =  ACTION_MODS_TAP_KEY(MOD_LALT,       KC_NO),         // FN12 = LAlt   with tap Escape
     [13] =  ACTION_MODS_TAP_KEY(MOD_RALT,       KC_PGDN),       // FN13 = RAlt   with tap PgDn
@@ -437,14 +449,13 @@ const action_t fn_actions_0[] PROGMEM = {
     [22] =  ACTION_LAYER_TAP_KEY(2, KC_S),                      // FN22 = momentary Layer2 on D key
     [23] =  ACTION_LAYER_TAP_KEY(3, KC_D),                      // FN23 = momentary Layer3 on S key
     [24] =  ACTION_LAYER_TAP_KEY(4, KC_F),                      // FN24 = momentary Layer4 on A key
-    [25] =  ACTION_LAYER_SET(6, ON_PRESS),                      // FN25
-
-    [28] =  ACTION_LAYER_TAP_KEY(5, KC_5),                      // FN28 = momentary Layer5 on 5 key
-    [29] =  ACTION_LAYER_TAP_KEY(5, KC_6),                      // FN29 = momentary Layer5 on 6 key
+    [25] =  ACTION_LAYER_TAP_KEY(5, KC_5),                      // FN25 = momentary Layer5 on 5 key
+    [26] =  ACTION_LAYER_TAP_KEY(5, KC_6),                      // FN26 = momentary Layer5 on 6 key
+    [27] =  ACTION_LAYER_TAP_KEY(7, KC_GRV),                    // FN27 = momentary Layer6 on ~ key - should be modified to set layer permanently
 
     // system hacks
     [30] =  ACTION_FUNCTION(TEENSY_KEY),                        // FN30 = Teensy key
-    [31] =  ACTION_LAYER_SET(0, ON_PRESS),                       // FN31 = set Layer0
+    [31] =  ACTION_LAYER_SET(0, ON_PRESS),                      // FN31 = set Layer0
 };
 
 const action_t fn_actions_1[] PROGMEM = {
