@@ -111,8 +111,8 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KEYMAP(  // Layer 0 : default
         ESC ,F1  ,F2  ,F3  ,F4  ,F5  ,F6  ,F7  ,F8  ,       F9  ,F10 ,F11 ,F12 ,PSCR,SLCK,PAUS,NLCK,EXEC,
     //                ;    !    #    {    }                      [    ]    *    (    )    =
-                 GRV ,1   ,2   ,3   ,4   ,FN25,                  FN26,7   ,8   ,9   ,0   ,EQL ,
-                 TAB ,Q   ,W   ,E   ,R   ,T   ,                  Y   ,U   ,I   ,O   ,P   ,LBRC,
+                 ESC ,1   ,2   ,3   ,4   ,FN25,                  FN26,7   ,8   ,9   ,0   ,EQL ,
+                 GRV ,Q   ,W   ,E   ,R   ,T   ,                  Y   ,U   ,I   ,O   ,P   ,LBRC,
                  FN10,FN21,FN22,FN23,FN24,G   ,                  H   ,J   ,K   ,L   ,SCLN,FN11,
                  FN9 ,Z   ,X   ,C   ,V   ,B   ,                  N   ,M   ,COMM,DOT ,SLSH,RBRC,
                       CAPS,SLCK,HOME,END ,                            LEFT,UP  ,DOWN,RGHT,
@@ -557,16 +557,15 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
         send_keyboard_report();
     }
 
+/***
     if (   id == L_CTRL_ALT_NO
         || id == R_CTRL_ALT_PGUP
     ) {
         // debug
-        /*
-        if (record->event.pressed) dprint("P"); else dprint("R");
-        dprintf("%d", record->tap.count);
-        if (record->tap.interrupted) dprint("i");
-        dprint("\n");
-        */
+        //if (record->event.pressed) dprint("P"); else dprint("R");
+        //dprintf("%d", record->tap.count);
+        //if (record->tap.interrupted) dprint("i");
+        //dprint("\n");
 
         if (record->tap.count == 0 || record->tap.interrupted) {
             uint8_t weak_mods = 0;
@@ -609,6 +608,7 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
             send_keyboard_report();
         }
     }
+***/
 }
 
 
