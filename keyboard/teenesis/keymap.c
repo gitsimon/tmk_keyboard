@@ -110,6 +110,12 @@ B6 - PL1/5    PR1/8
 static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KEYMAP(  // Layer 0 : default
         ESC ,F1  ,F2  ,F3  ,F4  ,F5  ,F6  ,F7  ,F8  ,       F9  ,F10 ,F11 ,F12 ,PSCR,SLCK,PAUS,NLCK,EXEC,
+// want (optimized for Java)
+//               ESC  !    @    #    {    }                      [    ]    *    (    )    =+
+//               DSFT Q    D    R    W    B                      J    F    U    P    ;:   '"
+//               TAB  A    S    H    T    G                      Y    N    E    O    I    -_
+//               GRV  Z    X    M    C    V                      K    L    ,<   .>   /?   \|
+//
 // actual on mac:
 //               ESC  !    @    #    $    %                      ^    &    *    (    )    =+
 //               DSFT Q    D    R    W    B                      J    F    U    P    ;:   '"
@@ -124,7 +130,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //               GRV  Z    X    M    C    V                      K    L    ,<   .>   /?   \|
 //
 
-                 ESC ,1   ,2   ,3   ,4   ,FN25,                  FN26,7   ,8   ,9   ,0   ,EQL ,
+                 ESC ,1   ,2   ,3   ,4   ,FN26,                  6   ,7   ,8   ,9   ,0   ,EQL ,
                  FN20,Q   ,W   ,E   ,R   ,T   ,                  Y   ,U   ,I   ,O   ,P   ,LBRC,
                  FN10,FN21,FN22,FN23,FN24,G   ,                  H   ,J   ,K   ,L   ,SCLN,FN11,
                  GRV ,Z   ,X   ,C   ,V   ,B   ,                  N   ,M   ,COMM,DOT ,SLSH,RBRC,
@@ -136,12 +142,40 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     KEYMAP(  // Layer1: unconvenient keys on right hand
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,       TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,  // in Workman right hand will be:
+                 /*
+                                                                                                           // want (optimized for Java)
+                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  FN4 ,NO  ,8   ,9   ,0   ,NO  ,NO          //    | ^ * ( ) %
+                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  NO  ,NO  ,FN5 ,5   ,6   ,NO  ,NO          //    & - > { } @
+                 NO  ,TRNS,NO  ,NO  ,NO  ,NO  ,                  LBRC,1   ,4   ,FN3 ,FN2 ,P   ,NO          //    ' ! $ " : ;
+                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  3   ,6   ,FN4 ,FN5 ,7   ,FN0 ,RBRC        //    # [ < > ] \
+
+    [ 0] =  ACTION_MODS_KEY(MOD_LSFT,           KC_MINS),       // FN0
+    [ 1] =  ACTION_MODS_KEY(MOD_LSFT,           KC_EQL),        // FN1
+                                                                      
+    [ 2] =  ACTION_MODS_KEY(MOD_LSFT,           KC_P),          // FN2
+    [ 3] =  ACTION_MODS_KEY(MOD_LSFT,           KC_LBRC),       // FN3
+    [ 4] =  ACTION_MODS_KEY(MOD_LSFT,           KC_RBRC),       // FN4
+    [ 5] =  ACTION_MODS_KEY(MOD_LSFT,           KC_BSLS),       // FN5
+                                                                      
+    [ 6] =  ACTION_MODS_KEY(MOD_LSFT,           KC_COMM),       // FN6
+    [ 7] =  ACTION_MODS_KEY(MOD_LSFT,           KC_DOT),        // FN7
+                 */
                                                                                                            // actual on mac (optimized for Java/IDEA)
                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  FN0 ,FN1 ,FN2 ,9   ,0   ,EQL ,            //    | { } ( ) =
                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  7   ,QUOT,FN5 ,MINS,BSLS,FN7 ,            //    & - > [ ] +
                  NO  ,TRNS,NO  ,NO  ,NO  ,NO  ,                  LBRC,1   ,4   ,FN3 ,FN6 ,P   ,            //    ' ! $ " : ;
                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  3   ,6   ,FN4 ,FN5 ,5   ,8   ,            //    # ^ < > % *
                  /*
+    [ 0] =  ACTION_MODS_KEY(MOD_LSFT,           KC_RBRC),       // FN0
+    [ 1] =  ACTION_MODS_KEY(MOD_LSFT,           KC_MINS),       // FN1
+    [ 2] =  ACTION_MODS_KEY(MOD_LSFT,           KC_BSLS),       // FN2
+    [ 3] =  ACTION_MODS_KEY(MOD_LSFT,           KC_LBRC),       // FN3
+    [ 4] =  ACTION_MODS_KEY(MOD_LSFT,           KC_COMM),       // FN4
+    [ 5] =  ACTION_MODS_KEY(MOD_LSFT,           KC_DOT),        // FN5
+    [ 6] =  ACTION_MODS_KEY(MOD_LSFT,           KC_P),          // FN6
+    [ 7] =  ACTION_MODS_KEY(MOD_LSFT,           KC_EQL),        // FN7
+
+
                                                                                                            // was on linux (optimized for Perl)
                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  FN1 ,FN2 ,9   ,8   ,0   ,PPLS,            //    { } ( * ) +
                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  7   ,6   ,5   ,LBRC,RBRC,EQL ,            //    & ^ % [ ] =
@@ -190,19 +224,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                      TRNS,TRNS,TRNS,        TRNS,TRNS,TRNS
     ),
 
-    KEYMAP(  // Layer5: Macros, media and full F-keys
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,       TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-                 FN1 ,NO  ,NO  ,NO  ,NO  ,TRNS,                  TRNS,MUTE,VOLD,VOLU,NO  ,FN3 ,
-                 FN2 ,F1  ,F2  ,F3  ,F4  ,NO  ,                  NO  ,F13 ,F14 ,F15 ,F16 ,FN4 ,
-                 NO  ,F5  ,F6  ,F7  ,F8  ,NO  ,                  NO  ,F17 ,F18 ,F19 ,F20 ,NO  ,
-                 NO  ,F9  ,F10 ,F11 ,F12 ,NO  ,                  NO  ,F21 ,F22 ,F23 ,F24 ,NO  ,
-                      NO  ,NO  ,NO  ,NO  ,                            NO  ,NO  ,NO  ,NO  ,
-                                          TRNS,TRNS,        TRNS,FN6 ,
-                                               TRNS,        TRNS,
-                                     TRNS,TRNS,TRNS,        SLEP,TRNS,FN30
-    ),
-
-    KEYMAP(  // Layer6: empty - reserved
+    KEYMAP(  // Layer5: empty - reserved
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,       TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,
                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,
@@ -212,6 +234,18 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                           TRNS,TRNS,        TRNS,TRNS,
                                                TRNS,        TRNS,
                                      TRNS,TRNS,TRNS,        TRNS,TRNS,TRNS
+    ),
+
+    KEYMAP(  // Layer6: Macros, media and full F-keys
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,       TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+                 FN1 ,FN9 ,NO  ,NO  ,NO  ,TRNS,                  TRNS,MUTE,VOLD,VOLU,NO  ,FN3 ,
+                 FN2 ,F1  ,F2  ,F3  ,F4  ,NO  ,                  NO  ,F13 ,F14 ,F15 ,F16 ,FN4 ,
+                 NO  ,F5  ,F6  ,F7  ,F8  ,NO  ,                  NO  ,F17 ,F18 ,F19 ,F20 ,NO  ,
+                 NO  ,F9  ,F10 ,F11 ,F12 ,NO  ,                  NO  ,F21 ,F22 ,F23 ,F24 ,NO  ,
+                      NO  ,NO  ,NO  ,NO  ,                            NO  ,NO  ,NO  ,NO  ,
+                                          TRNS,TRNS,        TRNS,FN6 ,
+                                               TRNS,        TRNS,
+                                     TRNS,TRNS,TRNS,        SLEP,TRNS,FN30
     ),
 
     KEYMAP(  // Layer7 : games
@@ -466,8 +500,8 @@ const action_t fn_actions_0[] PROGMEM = {
     [22] =  ACTION_LAYER_TAP_KEY(2, KC_S),                      // FN22 = momentary Layer2 on D key
     [23] =  ACTION_LAYER_TAP_KEY(3, KC_D),                      // FN23 = momentary Layer3 on S key
     [24] =  ACTION_LAYER_TAP_KEY(4, KC_F),                      // FN24 = momentary Layer4 on A key
-    [25] =  ACTION_LAYER_TAP_KEY(5, KC_5),                      // FN25 = momentary Layer5 on 5 key
-    [26] =  ACTION_LAYER_TAP_KEY(5, KC_6),                      // FN26 = momentary Layer5 on 6 key
+    // [25] =  ACTION_LAYER_TAP_KEY(5, KC_5),                      // FN25 = momentary Layer5 on 5 key
+    [26] =  ACTION_LAYER_TAP_KEY(6, KC_5),                      // FN26 = momentary Layer6 on 5 key
     [27] =  ACTION_LAYER_TAP_KEY(7, KC_GRV),                    // FN27 = momentary Layer7 on ~ key - should be modified to set layer permanently
 
     // system hacks
@@ -486,18 +520,18 @@ const action_t fn_actions_1[] PROGMEM = {
     [ 7] =  ACTION_MODS_KEY(MOD_LSFT,           KC_EQL),        // FN7
 };
 
-const action_t fn_actions_5[] PROGMEM = {
+const action_t fn_actions_6[] PROGMEM = {
     [ 1] =  ACTION_MACRO(PASSWORD1),                            // FN1
     [ 2] =  ACTION_MACRO(PASSWORD2),                            // FN2
     [ 3] =  ACTION_MACRO(PASSWORD3),                            // FN3
     [ 4] =  ACTION_MACRO(PASSWORD4),                            // FN4
-    [ 9] =  ACTION_LAYER_SET(7, ON_PRESS),                      // FN4
+    [ 9] =  ACTION_LAYER_SET(7, ON_PRESS),                      // FN9
 };
 
 #define KEYMAPS_SIZE        (sizeof(keymaps)       / sizeof(keymaps[0]))
 #define FN_ACTIONS_0_SIZE   (sizeof(fn_actions_0)  / sizeof(fn_actions_0[0]))
 #define FN_ACTIONS_1_SIZE   (sizeof(fn_actions_1)  / sizeof(fn_actions_1[0]))
-#define FN_ACTIONS_5_SIZE   (sizeof(fn_actions_5)  / sizeof(fn_actions_5[0]))
+#define FN_ACTIONS_6_SIZE   (sizeof(fn_actions_6)  / sizeof(fn_actions_6[0]))
 
 /*
  * translates Fn keycode to action
@@ -511,8 +545,8 @@ action_t keymap_fn_to_action(uint8_t keycode)
 
     if (layer == 1 && FN_INDEX(keycode) < FN_ACTIONS_1_SIZE) {
         return (action_t)pgm_read_word(&fn_actions_1[FN_INDEX(keycode)]);
-    } else if (layer == 5 && FN_INDEX(keycode) < FN_ACTIONS_5_SIZE) {
-        return (action_t)pgm_read_word(&fn_actions_5[FN_INDEX(keycode)]);
+    } else if (layer == 6 && FN_INDEX(keycode) < FN_ACTIONS_6_SIZE) {
+        return (action_t)pgm_read_word(&fn_actions_6[FN_INDEX(keycode)]);
     } else if (FN_INDEX(keycode) < FN_ACTIONS_0_SIZE) {
         // by default, use fn_actions from default layer 0
         // this is needed to get mapping for same key, that was used switch to some layer,
@@ -696,3 +730,37 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
     return MACRO_NONE;
 }
 
+/* all non-letters
+
+!
+"
+#
+$
+%
+&
+'
+(
+)
+*
++
+,
+-
+.
+/
+:
+;
+<
+=
+>
+?
+@
+[
+\
+]
+^
+_
+{
+|
+}
+
+*/
