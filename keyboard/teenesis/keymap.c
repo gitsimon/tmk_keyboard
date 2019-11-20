@@ -112,9 +112,9 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ESC ,F1  ,F2  ,F3  ,F4  ,F5  ,F6  ,F7  ,F8  ,       F9  ,F10 ,F11 ,F12 ,PSCR,SLCK,PAUS,NLCK,EXEC,
     //                ;    !    #    {    }                      [    ]    *    (    )    =
                  ESC ,1   ,2   ,3   ,4   ,FN25,                  FN26,7   ,8   ,9   ,0   ,EQL ,
-                 GRV ,Q   ,W   ,E   ,R   ,T   ,                  Y   ,U   ,I   ,O   ,P   ,LBRC,
+                 FN20,Q   ,W   ,E   ,R   ,T   ,                  Y   ,U   ,I   ,O   ,P   ,LBRC,
                  FN10,FN21,FN22,FN23,FN24,G   ,                  H   ,J   ,K   ,L   ,SCLN,FN11,
-                 FN9 ,Z   ,X   ,C   ,V   ,B   ,                  N   ,M   ,COMM,DOT ,SLSH,RBRC,
+                 GRV ,Z   ,X   ,C   ,V   ,B   ,                  N   ,M   ,COMM,DOT ,SLSH,RBRC,
                       CAPS,SLCK,HOME,END ,                            LEFT,UP  ,DOWN,RGHT,
                                           NO  ,FN31,        PGUP,NO  ,
                                                FN12,        FN13,
@@ -415,6 +415,7 @@ enum macro_id {
     PASSWORD2,
     PASSWORD3,
     PASSWORD4,
+    SHIFT_SHIFT,
 };
 
 /*
@@ -428,8 +429,8 @@ const action_t fn_actions_0[] PROGMEM = {
 
     // modified/shifted/inverted
     //[20] =  ACTION_MODS_KEY(MOD_LSFT, KC_SLCK),                 // FN22 = Shifted ScrollLock
-//    [ 8] =  ACTION_MODS_KEY(MOD_LSFT,           KC_LBRC),       // FN8
-    [ 9] =  ACTION_FUNCTION(INVERTED_GRV),                      // FN9  = Inverted `/~ pair
+    //[ 8] =  ACTION_MODS_KEY(MOD_LSFT,           KC_LBRC),       // FN8
+    //[ 9] =  ACTION_FUNCTION(INVERTED_GRV),                      // FN9  = Inverted `/~ pair
 
     // dual-role
     [10] =  ACTION_MODS_TAP_KEY(MOD_LSFT,       KC_TAB),        // FN10 = LShift with tap Tab
@@ -443,6 +444,7 @@ const action_t fn_actions_0[] PROGMEM = {
     [17] =  ACTION_MODS_TAP_KEY(MOD_RGUI,       KC_INS),        // FN17 = RGui   with tap Ins
     [18] =  ACTION_MODS_TAP_KEY(MOD_RSFT,       KC_ENT),        // FN18 = RShift with tap Enter
     [19] =  ACTION_MODS_TAP_KEY(MOD_RCTL,       KC_SPC),        // FN19 = RCtrl  with tap Space
+    [20] =  ACTION_MACRO(SHIFT_SHIFT),                          // FN20 = double-shift: useful for IDEA
 
     // layers
     [21] =  ACTION_LAYER_TAP_KEY(1, KC_A),                      // FN21 = momentary Layer1 on F key
@@ -451,7 +453,7 @@ const action_t fn_actions_0[] PROGMEM = {
     [24] =  ACTION_LAYER_TAP_KEY(4, KC_F),                      // FN24 = momentary Layer4 on A key
     [25] =  ACTION_LAYER_TAP_KEY(5, KC_5),                      // FN25 = momentary Layer5 on 5 key
     [26] =  ACTION_LAYER_TAP_KEY(5, KC_6),                      // FN26 = momentary Layer5 on 6 key
-    [27] =  ACTION_LAYER_TAP_KEY(7, KC_GRV),                    // FN27 = momentary Layer6 on ~ key - should be modified to set layer permanently
+    [27] =  ACTION_LAYER_TAP_KEY(7, KC_GRV),                    // FN27 = momentary Layer7 on ~ key - should be modified to set layer permanently
 
     // system hacks
     [30] =  ACTION_FUNCTION(TEENSY_KEY),                        // FN30 = Teensy key
@@ -473,7 +475,7 @@ const action_t fn_actions_5[] PROGMEM = {
     [ 2] =  ACTION_MACRO(PASSWORD2),                            // FN2
     [ 3] =  ACTION_MACRO(PASSWORD3),                            // FN3
     [ 4] =  ACTION_MACRO(PASSWORD4),                            // FN4
-    [ 9] =  ACTION_LAYER_SET(6, ON_PRESS),                      // FN4
+    [ 9] =  ACTION_LAYER_SET(7, ON_PRESS),                      // FN4
 };
 
 #define KEYMAPS_SIZE        (sizeof(keymaps)       / sizeof(keymaps[0]))
@@ -534,6 +536,7 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
         print("not supported.\n");
     }
 
+/***
     if (id == INVERTED_GRV) {
         orig_mods = real_mods = get_mods();
         shift_pressed = real_mods && 0x22;              // both SHIFTs
@@ -556,6 +559,7 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
         set_mods(orig_mods);
         send_keyboard_report();
     }
+***/
 
 /***
     if (   id == L_CTRL_ALT_NO
@@ -657,6 +661,12 @@ uint8_t keymap_key_to_keycode(uint8_t layer, keypos_t key)
                                 U(LSFT), T(ENT), \
                             END)
 
+#define MACRO_SHIFT_SHIFT   MACRO( \
+                                I(15), \
+                                D(LSFT), U(LSFT), \
+                                D(LSFT), U(LSFT), \
+                            END)
+
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
     if (record->event.pressed) {
         switch (id) {
@@ -664,6 +674,7 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
             case PASSWORD2:     return (MACRO_PASSWORD2);
             case PASSWORD3:     return (MACRO_PASSWORD3);
             case PASSWORD4:     return (MACRO_PASSWORD4);
+            case SHIFT_SHIFT:   return (MACRO_SHIFT_SHIFT);
         }
     }
     return MACRO_NONE;
