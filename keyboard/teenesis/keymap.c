@@ -110,25 +110,17 @@ B6 - PL1/5    PR1/8
 static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KEYMAP(  // Layer 0 : default
         ESC ,F1  ,F2  ,F3  ,F4  ,F5  ,F6  ,F7  ,F8  ,       F9  ,F10 ,F11 ,F12 ,PSCR,SLCK,PAUS,NLCK,EXEC,
-// want (optimized for Java)
+// actual on mac (optimized for Java)
 //               ESC  !    @    #    {    }                      [    ]    *    (    )    =+
 //               DSFT Q    D    R    W    B                      J    F    U    P    ;:   '"
 //               TAB  A    S    H    T    G                      Y    N    E    O    I    -_
 //               GRV  Z    X    M    C    V                      K    L    ,<   .>   /?   \|
-//
-// actual on mac:
-//               ESC  !    @    #    $    %                      ^    &    *    (    )    =+
-//               DSFT Q    D    R    W    B                      J    F    U    P    ;:   '"
-//               TAB  A    S    H    T    G                      Y    N    E    O    I    -_
-//               GRV  Z    X    M    C    V                      K    L    ,<   .>   /?   \|
-//
 //
 // was on linux:
 //               ???  ;    !    #    {    }                      [    ]    *    (    )    =+
 //               ???  Q    D    R    W    B                      J    F    U    P    $@   %^
 //               TAB  A    S    H    T    G                      Y    N    E    O    I    -_
 //               GRV  Z    X    M    C    V                      K    L    ,<   .>   /?   \|
-//
 
                  ESC ,1   ,2   ,3   ,4   ,FN26,                  6   ,7   ,8   ,9   ,0   ,EQL ,
                  FN20,Q   ,W   ,E   ,R   ,T   ,                  Y   ,U   ,I   ,O   ,P   ,LBRC,
@@ -142,46 +134,19 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     KEYMAP(  // Layer1: unconvenient keys on right hand
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,       TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,  // in Workman right hand will be:
-                 /*
-                                                                                                           // want (optimized for Java)
-                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  FN4 ,NO  ,8   ,9   ,0   ,NO  ,NO          //    | ^ * ( ) %
-                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  NO  ,NO  ,FN5 ,5   ,6   ,NO  ,NO          //    & - > { } @
-                 NO  ,TRNS,NO  ,NO  ,NO  ,NO  ,                  LBRC,1   ,4   ,FN3 ,FN2 ,P   ,NO          //    ' ! $ " : ;
-                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  3   ,6   ,FN4 ,FN5 ,7   ,FN0 ,RBRC        //    # [ < > ] \
+// actual on mac (optimized for Java)
+                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  FN4 ,MINS,8   ,9   ,0   ,FN7 ,            //    | ^ * ( ) %
+                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  BSLS,QUOT,FN6 ,4   ,5   ,2   ,            //    & - > { } @
+                 NO  ,TRNS,NO  ,NO  ,NO  ,NO  ,                  LBRC,1   ,FN0 ,FN3 ,FN2 ,P   ,            //    ' ! $ " : ;
+                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  3   ,6   ,FN5 ,FN6 ,7   ,RBRC,            //    # [ < > ] \
 
-    [ 0] =  ACTION_MODS_KEY(MOD_LSFT,           KC_MINS),       // FN0
-    [ 1] =  ACTION_MODS_KEY(MOD_LSFT,           KC_EQL),        // FN1
-                                                                      
-    [ 2] =  ACTION_MODS_KEY(MOD_LSFT,           KC_P),          // FN2
-    [ 3] =  ACTION_MODS_KEY(MOD_LSFT,           KC_LBRC),       // FN3
-    [ 4] =  ACTION_MODS_KEY(MOD_LSFT,           KC_RBRC),       // FN4
-    [ 5] =  ACTION_MODS_KEY(MOD_LSFT,           KC_BSLS),       // FN5
-                                                                      
-    [ 6] =  ACTION_MODS_KEY(MOD_LSFT,           KC_COMM),       // FN6
-    [ 7] =  ACTION_MODS_KEY(MOD_LSFT,           KC_DOT),        // FN7
-                 */
-                                                                                                           // actual on mac (optimized for Java/IDEA)
-                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  FN0 ,FN1 ,FN2 ,9   ,0   ,EQL ,            //    | { } ( ) =
-                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  7   ,QUOT,FN5 ,MINS,BSLS,FN7 ,            //    & - > [ ] +
-                 NO  ,TRNS,NO  ,NO  ,NO  ,NO  ,                  LBRC,1   ,4   ,FN3 ,FN6 ,P   ,            //    ' ! $ " : ;
-                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  3   ,6   ,FN4 ,FN5 ,5   ,8   ,            //    # ^ < > % *
-                 /*
-    [ 0] =  ACTION_MODS_KEY(MOD_LSFT,           KC_RBRC),       // FN0
-    [ 1] =  ACTION_MODS_KEY(MOD_LSFT,           KC_MINS),       // FN1
-    [ 2] =  ACTION_MODS_KEY(MOD_LSFT,           KC_BSLS),       // FN2
-    [ 3] =  ACTION_MODS_KEY(MOD_LSFT,           KC_LBRC),       // FN3
-    [ 4] =  ACTION_MODS_KEY(MOD_LSFT,           KC_COMM),       // FN4
-    [ 5] =  ACTION_MODS_KEY(MOD_LSFT,           KC_DOT),        // FN5
-    [ 6] =  ACTION_MODS_KEY(MOD_LSFT,           KC_P),          // FN6
-    [ 7] =  ACTION_MODS_KEY(MOD_LSFT,           KC_EQL),        // FN7
-
-
-                                                                                                           // was on linux (optimized for Perl)
+/*
+// was on linux (optimized for Perl)
                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  FN1 ,FN2 ,9   ,8   ,0   ,PPLS,            //    { } ( * ) +
                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  7   ,6   ,5   ,LBRC,RBRC,EQL ,            //    & ^ % [ ] =
                  NO  ,TRNS,NO  ,NO  ,NO  ,NO  ,                  QUOT,1   ,4   ,FN3 ,FN6 ,P   ,            //    ' ! $ " : ;
                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  3   ,LBRC,FN4 ,FN5 ,RBRC,FN0 ,            //    # [ < > ] |
-                 */
+*/
                       NO  ,NO  ,NO  ,NO  ,                            NO  ,NO  ,NO  ,NO  ,
                                           TRNS,TRNS,        TRNS,TRNS,
                                                TRNS,        TRNS,
@@ -510,14 +475,18 @@ const action_t fn_actions_0[] PROGMEM = {
 };
 
 const action_t fn_actions_1[] PROGMEM = {
-    [ 0] =  ACTION_MODS_KEY(MOD_LSFT,           KC_RBRC),       // FN0
-    [ 1] =  ACTION_MODS_KEY(MOD_LSFT,           KC_MINS),       // FN1
-    [ 2] =  ACTION_MODS_KEY(MOD_LSFT,           KC_BSLS),       // FN2
+    // row 1
+    [ 0] =  ACTION_MODS_KEY(MOD_LSFT,           KC_MINS),       // FN0
+    [ 1] =  ACTION_MODS_KEY(MOD_LSFT,           KC_EQL),        // FN1
+    // row 2
+    [ 2] =  ACTION_MODS_KEY(MOD_LSFT,           KC_P),          // FN2
     [ 3] =  ACTION_MODS_KEY(MOD_LSFT,           KC_LBRC),       // FN3
-    [ 4] =  ACTION_MODS_KEY(MOD_LSFT,           KC_COMM),       // FN4
-    [ 5] =  ACTION_MODS_KEY(MOD_LSFT,           KC_DOT),        // FN5
-    [ 6] =  ACTION_MODS_KEY(MOD_LSFT,           KC_P),          // FN6
-    [ 7] =  ACTION_MODS_KEY(MOD_LSFT,           KC_EQL),        // FN7
+    // row 3
+    [ 4] =  ACTION_MODS_KEY(MOD_LSFT,           KC_RBRC),       // FN4
+    // row 4
+    [ 5] =  ACTION_MODS_KEY(MOD_LSFT,           KC_COMM),       // FN5
+    [ 6] =  ACTION_MODS_KEY(MOD_LSFT,           KC_DOT),        // FN6
+    [ 7] =  ACTION_MODS_KEY(MOD_LSFT,           KC_BSLS),       // FN7
 };
 
 const action_t fn_actions_6[] PROGMEM = {
