@@ -136,14 +136,16 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     KEYMAP(  // Layer1: unconvenient keys on right hand
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,       TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,  // in Workman right hand will be:
+                                                                                                           // actual on mac (optimized for Java/IDEA)
                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  FN0 ,FN1 ,FN2 ,9   ,0   ,EQL ,            //    | { } ( ) =
                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  7   ,QUOT,FN5 ,MINS,BSLS,FN7 ,            //    & - > [ ] +
                  NO  ,TRNS,NO  ,NO  ,NO  ,NO  ,                  LBRC,1   ,4   ,FN3 ,FN6 ,P   ,            //    ' ! $ " : ;
                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  3   ,6   ,FN4 ,FN5 ,5   ,8   ,            //    # ^ < > % *
                  /*
+                                                                                                           // was on linux (optimized for Perl)
                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  FN1 ,FN2 ,9   ,8   ,0   ,PPLS,            //    { } ( * ) +
                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  7   ,6   ,5   ,LBRC,RBRC,EQL ,            //    & ^ % [ ] =
-                 NO  ,NO  ,NO  ,NO  ,TRNS,NO  ,                  QUOT,1   ,4   ,FN3 ,FN6 ,P   ,            //    ' ! $ " : ;
+                 NO  ,TRNS,NO  ,NO  ,NO  ,NO  ,                  QUOT,1   ,4   ,FN3 ,FN6 ,P   ,            //    ' ! $ " : ;
                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  3   ,LBRC,FN4 ,FN5 ,RBRC,FN0 ,            //    # [ < > ] |
                  */
                       NO  ,NO  ,NO  ,NO  ,                            NO  ,NO  ,NO  ,NO  ,
