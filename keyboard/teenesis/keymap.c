@@ -110,7 +110,20 @@ B6 - PL1/5    PR1/8
 static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KEYMAP(  // Layer 0 : default
         ESC ,F1  ,F2  ,F3  ,F4  ,F5  ,F6  ,F7  ,F8  ,       F9  ,F10 ,F11 ,F12 ,PSCR,SLCK,PAUS,NLCK,EXEC,
-    //                ;    !    #    {    }                      [    ]    *    (    )    =
+// actual on mac:
+//               ESC  !    @    #    $    %                      ^    &    *    (    )    =+
+//               DSFT Q    D    R    W    B                      J    F    U    P    ;:   '"
+//               TAB  A    S    H    T    G                      Y    N    E    O    I    -_
+//               GRV  Z    X    M    C    V                      K    L    ,<   .>   /?   \|
+//
+//
+// was on linux:
+//               ???  ;    !    #    {    }                      [    ]    *    (    )    =+
+//               ???  Q    D    R    W    B                      J    F    U    P    $@   %^
+//               TAB  A    S    H    T    G                      Y    N    E    O    I    -_
+//               GRV  Z    X    M    C    V                      K    L    ,<   .>   /?   \|
+//
+
                  ESC ,1   ,2   ,3   ,4   ,FN25,                  FN26,7   ,8   ,9   ,0   ,EQL ,
                  FN20,Q   ,W   ,E   ,R   ,T   ,                  Y   ,U   ,I   ,O   ,P   ,LBRC,
                  FN10,FN21,FN22,FN23,FN24,G   ,                  H   ,J   ,K   ,L   ,SCLN,FN11,
@@ -123,18 +136,11 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     KEYMAP(  // Layer1: unconvenient keys on right hand
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,       TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,  // in Workman right hand will be:
-                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  FN0 ,FN1 ,FN2 ,9   ,0   ,EQL ,            //    | { } ( ) =      | " | ( ) =     | " | ( ) =
-                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  7   ,MINS,FN5 ,MINS,BSLS,PPLS,            //    & - > [ ] +      & - > ' \ +     & - > ' \ +
-                 NO  ,TRNS,NO  ,NO  ,NO  ,NO  ,                  RBRC,1   ,4   ,FN3 ,FN6 ,P   ,            //    ' ! $ " : ;      - ! $ _ : ;     - ! $ _ : ;
-                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  3   ,6   ,FN4 ,FN5 ,5   ,8   ,            //    # ^ < > % *      # ^ < > % *     # ^ < > % *
-                 /*
                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  FN0 ,FN1 ,FN2 ,9   ,0   ,EQL ,            //    | { } ( ) =
-                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  7   ,MINS,FN5 ,LBRC,RBRC,PPLS,            //    & - > [ ] +
-                 NO  ,TRNS,NO  ,NO  ,NO  ,NO  ,                  QUOT,1   ,4   ,FN3 ,FN6 ,P   ,            //    ' ! $ " : ;
+                 NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  7   ,QUOT,FN5 ,MINS,BSLS,FN7 ,            //    & - > [ ] +
+                 NO  ,TRNS,NO  ,NO  ,NO  ,NO  ,                  LBRC,1   ,4   ,FN3 ,FN6 ,P   ,            //    ' ! $ " : ;
                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  3   ,6   ,FN4 ,FN5 ,5   ,8   ,            //    # ^ < > % *
-
-
-
+                 /*
                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  FN1 ,FN2 ,9   ,8   ,0   ,PPLS,            //    { } ( * ) +
                  NO  ,NO  ,NO  ,NO  ,NO  ,NO  ,                  7   ,6   ,5   ,LBRC,RBRC,EQL ,            //    & ^ % [ ] =
                  NO  ,NO  ,NO  ,NO  ,TRNS,NO  ,                  QUOT,1   ,4   ,FN3 ,FN6 ,P   ,            //    ' ! $ " : ;
@@ -468,13 +474,14 @@ const action_t fn_actions_0[] PROGMEM = {
 };
 
 const action_t fn_actions_1[] PROGMEM = {
-    [ 0] =  ACTION_MODS_KEY(MOD_LSFT,           KC_BSLS),       // FN0
+    [ 0] =  ACTION_MODS_KEY(MOD_LSFT,           KC_RBRC),       // FN0
     [ 1] =  ACTION_MODS_KEY(MOD_LSFT,           KC_MINS),       // FN1
     [ 2] =  ACTION_MODS_KEY(MOD_LSFT,           KC_BSLS),       // FN2
-    [ 3] =  ACTION_MODS_KEY(MOD_LSFT,           KC_RBRC),       // FN3
+    [ 3] =  ACTION_MODS_KEY(MOD_LSFT,           KC_LBRC),       // FN3
     [ 4] =  ACTION_MODS_KEY(MOD_LSFT,           KC_COMM),       // FN4
     [ 5] =  ACTION_MODS_KEY(MOD_LSFT,           KC_DOT),        // FN5
     [ 6] =  ACTION_MODS_KEY(MOD_LSFT,           KC_P),          // FN6
+    [ 7] =  ACTION_MODS_KEY(MOD_LSFT,           KC_EQL),        // FN7
 };
 
 const action_t fn_actions_5[] PROGMEM = {
