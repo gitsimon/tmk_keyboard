@@ -122,7 +122,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //               TAB  A    S    H    T    G                      Y    N    E    O    I    -_
 //               GRV  Z    X    M    C    V                      K    L    ,<   .>   /?   \|
 
-                 ESC ,1   ,2   ,3   ,4   ,FN26,                  6   ,7   ,8   ,9   ,0   ,EQL ,
+                 ESC ,1   ,2   ,3   ,4   ,FN26,                  FN27,7   ,8   ,9   ,0   ,EQL ,
                  FN20,Q   ,W   ,E   ,R   ,T   ,                  Y   ,U   ,I   ,O   ,P   ,LBRC,
                  FN10,FN21,FN22,FN23,FN24,G   ,                  H   ,J   ,K   ,L   ,SCLN,FN11,
                  GRV ,Z   ,X   ,C   ,V   ,B   ,                  N   ,M   ,COMM,DOT ,SLSH,RBRC,
@@ -467,7 +467,8 @@ const action_t fn_actions_0[] PROGMEM = {
     [24] =  ACTION_LAYER_TAP_KEY(4, KC_F),                      // FN24 = momentary Layer4 on A key
     // [25] =  ACTION_LAYER_TAP_KEY(5, KC_5),                      // FN25 = momentary Layer5 on 5 key
     [26] =  ACTION_LAYER_TAP_KEY(6, KC_5),                      // FN26 = momentary Layer6 on 5 key
-    [27] =  ACTION_LAYER_TAP_KEY(7, KC_GRV),                    // FN27 = momentary Layer7 on ~ key - should be modified to set layer permanently
+    [27] =  ACTION_LAYER_TAP_KEY(6, KC_6),                      // FN27 = momentary Layer6 on 6 key
+    // [28] =  ACTION_LAYER_TAP_KEY(7, KC_GRV),                    // FN28 = momentary Layer7 on ~ key - should be modified to set layer permanently
 
     // system hacks
     [30] =  ACTION_FUNCTION(TEENSY_KEY),                        // FN30 = Teensy key
@@ -675,7 +676,7 @@ uint8_t keymap_key_to_keycode(uint8_t layer, keypos_t key)
 #define MACRO_PASSWORD4     MACRO( \
                                 I(15), \
                                 T(V), T(I), T(T), \
-                                D(LSFT), T(MINS), \
+                                D(LSFT), T(QUOT), \
                                 T(7), T(1), T(3), \
                                 U(LSFT), T(ENT), \
                             END)
