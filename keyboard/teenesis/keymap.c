@@ -208,7 +208,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                  NO  ,F5  ,F6  ,F7  ,F8  ,NO  ,                  NO  ,F17 ,F18 ,F19 ,F20 ,NO  ,
                  NO  ,F9  ,F10 ,F11 ,F12 ,NO  ,                  NO  ,F21 ,F22 ,F23 ,F24 ,NO  ,
                       NO  ,NO  ,NO  ,NO  ,                            NO  ,NO  ,NO  ,NO  ,
-                                          TRNS,TRNS,        TRNS,FN6 ,
+                                          TRNS,TRNS,        TRNS,FN28,
                                                TRNS,        TRNS,
                                      TRNS,TRNS,TRNS,        SLEP,TRNS,FN30
     ),
@@ -468,7 +468,7 @@ const action_t fn_actions_0[] PROGMEM = {
     // [25] =  ACTION_LAYER_TAP_KEY(5, KC_5),                      // FN25 = momentary Layer5 on 5 key
     [26] =  ACTION_LAYER_TAP_KEY(6, KC_5),                      // FN26 = momentary Layer6 on 5 key
     [27] =  ACTION_LAYER_TAP_KEY(6, KC_6),                      // FN27 = momentary Layer6 on 6 key
-    // [28] =  ACTION_LAYER_TAP_KEY(7, KC_GRV),                    // FN28 = momentary Layer7 on ~ key - should be modified to set layer permanently
+    [28] =  ACTION_LAYER_SET(7, ON_PRESS),                      // FN28 = momentary Layer7 on ~ key - should be modified to set layer permanently
 
     // system hacks
     [30] =  ACTION_FUNCTION(TEENSY_KEY),                        // FN30 = Teensy key
