@@ -33,7 +33,11 @@ Project located at <https://github.com/benblazak/ergodox-firmware>
 #define PRODUCT         Teenesis
 #define DESCRIPTION     t.m.k. keyboard firmware for Kinesis
 
+#ifdef FKEYS_ENABLE
 #define MATRIX_ROWS 15
+#else
+#define MATRIX_ROWS 12
+#endif
 #define MATRIX_COLS 7
 
 #define BOOTLOADER_SIZE         512

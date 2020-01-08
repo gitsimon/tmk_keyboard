@@ -36,36 +36,39 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
-/* pinout
+/* pinout     Teensy                Advanced ProMicro (32u4)
 ## columns
-F0 - PL2/6    PL1/1
-F1 - PL2/7    PL1/2
-F4 - PL2/8    PL1/3
-F5 - PL2/10   PL1/8
-F6 - PL2/11
-F7 - PL2/12
-D0 - PR2/1    PR1/3
-D1 - PR2/3    PR1/4
-D2 - PR2/2    PR1/5
-D3 - PR2/12   PR1/6
-D4 - PR2/13
-D5 - PR2/6
-D6 - 
-C6 - 
-C7 - 
+F0 - PL2/6    PL1/1             |   * D7        PLC1/1
+F1 - PL2/7    PL1/2             |   * E6        PLC1/2
+F4 - PL2/8    PL1/3             |   F4          PLC1/3
+F5 - PL2/10   PL1/8             |   F5          PLC1/6
+F6 - PL2/11                     |   F6
+F7 - PL2/12                     |   F7
+D0 - PR2/1    PR1/3             |   D0          PRC1/1
+D1 - PR2/3    PR1/4             |   D1          PRC1/2
+D2 - PR2/2    PR1/5             |   D2          PRC1/3
+D3 - PR2/12   PR1/6             |   D3          PRC1/4
+D4 - PR2/13                     |   D4
+D5 - PR2/6                      |   D5
+
+## F-keys
+D6 -                            |   * 
+C6 -                            |   C6
+C7 -                            |   * 
 
 ## rows
-B0 - PL2/13   PR2/10
-B1 - PL2/5    PR2/9
-B2 - PL2/3    PR2/8
-B3 - PL2/2    PR2/7
-B4 - PL2/1    PR2/4
+B0 - PL2/13   PR2/10            |   B0
+B1 - PL2/5    PR2/9             |   B1
+B2 - PL2/3    PR2/8             |   B2
+B3 - PL2/2    PR2/7             |   B3
+B4 - PL2/1    PR2/4             |   B4
 
-B5 - PL1/4    PR1/7
-B6 - PL1/5    PR1/8
+B5 - PL1/4    PR1/7             |   B5          PLC1/4  PRC1/5
+B6 - PL1/5    PR1/8             |   B6          PLC1/5  PRC1/6
 */
 
 /* Teenesis keymap definition macro */
+#ifdef FKEYS_ENABLE
 #define KEYMAP(                                                                         \
     /* functional left */                                /* functional right */         \
     fl0,fl1,fl2,fl3,fl4,fl5,fl6,fl7,fl8,   fr8,fr7,fr6,fr5,fr4,fr3,fr2,fr1,fr0,         \
@@ -83,8 +86,8 @@ B6 - PL1/5    PR1/8
                                                                                         \
    /* matrix positions, k40 & k4B unused for now, k45 & k46 are untraced on plate */    \
    /* pins */                                                                           \
-   /* 0: B0    1: B1    2: B2    3: B3    4: B4      5: B5    6: B6                */   \
-   {                                                                                    \
+   /* 0: B0    1: B1    2: B2    3: B3    4: B4      5: B5    6: B6   ^ current flow */ \
+   {  /*                                                              | <-           */ \
    /* Left hand                                      Left thumb                    */   \
     { KC_##k00,KC_##k10,KC_##k20,KC_##k30,KC_NO   ,  KC_##k50,KC_NO   },  /* 0: F0 */   \
     { KC_##k01,KC_##k11,KC_##k21,KC_##k31,KC_##k41,  KC_NO   ,KC_##k61},  /* 1: F1 */   \
@@ -105,6 +108,43 @@ B6 - PL1/5    PR1/8
     { KC_##fl2,KC_##fl5,KC_##fl8,KC_NO   ,KC_##fr1,  KC_##fr6,KC_##fr3}   /* 2: C7 */   \
    }
 
+#else
+#define KEYMAP(                                                                         \
+    /* functional left */                                /* functional right */         \
+    fl0,fl1,fl2,fl3,fl4,fl5,fl6,fl7,fl8,   fr8,fr7,fr6,fr5,fr4,fr3,fr2,fr1,fr0,         \
+                                                                                        \
+    /* left hand, spatial positions */      /* right hand, spatial positions */         \
+    k00,k01,k02,k03,k04,k05,                           k06,k07,k08,k09,k0A,k0B,         \
+    k10,k11,k12,k13,k14,k15,                           k16,k17,k18,k19,k1A,k1B,         \
+    k20,k21,k22,k23,k24,k25,                           k26,k27,k28,k29,k2A,k2B,         \
+    k30,k31,k32,k33,k34,k35,                           k36,k37,k38,k39,k3A,k3B,         \
+        k41,k42,k43,k44,                                   k47,k48,k49,k4A,             \
+                            k52,k62,           k59,k68,                                 \
+                                k63,           k58,                                     \
+                        k53,k50,k61,           k56,k67,k66 )                            \
+                                                                                        \
+                                                                                        \
+   /* matrix positions, k40 & k4B unused for now, k45 & k46 are untraced on plate */    \
+   /* pins */                                                                           \
+   /* 0: B0    1: B1    2: B2    3: B3    4: B4      5: B5    6: B6   ^ current flow */ \
+   {  /*                                                              | <-           */ \
+   /* Left hand                                      Left thumb                    */   \
+    { KC_##k00,KC_##k10,KC_##k20,KC_##k30,KC_NO   ,  KC_##k50,KC_NO   },  /* 0: F0 */   \
+    { KC_##k01,KC_##k11,KC_##k21,KC_##k31,KC_##k41,  KC_NO   ,KC_##k61},  /* 1: F1 */   \
+    { KC_##k02,KC_##k12,KC_##k22,KC_##k32,KC_##k42,  KC_##k52,KC_##k62},  /* 2: F4 */   \
+    { KC_##k03,KC_##k13,KC_##k23,KC_##k33,KC_##k43,  KC_##k53,KC_##k63},  /* 3: F5 */   \
+    { KC_##k04,KC_##k14,KC_##k24,KC_##k34,KC_NO   ,  KC_NO   ,KC_NO   },  /* 4: F6 */   \
+    { KC_##k05,KC_##k15,KC_##k25,KC_##k35,KC_##k44,  KC_NO   ,KC_NO   },  /* 5: F7 */   \
+   /* Right hand                                     Right thumb                   */   \
+    { KC_##k06,KC_##k16,KC_##k26,KC_##k36,KC_##k47,  KC_##k56,KC_##k66},  /* 0: D0 */   \
+    { KC_##k07,KC_##k17,KC_##k27,KC_##k37,KC_NO   ,  KC_NO   ,KC_##k67},  /* 2: D1 */   \
+    { KC_##k08,KC_##k18,KC_##k28,KC_##k38,KC_##k48,  KC_##k58,KC_##k68},  /* 1: D2 */   \
+    { KC_##k09,KC_##k19,KC_##k29,KC_##k39,KC_##k49,  KC_##k59,KC_NO   },  /* 4: D3 */   \
+    { KC_##k0A,KC_##k1A,KC_##k2A,KC_##k3A,KC_##k4A,  KC_NO   ,KC_NO   },  /* 5: D4 */   \
+    { KC_##k0B,KC_##k1B,KC_##k2B,KC_##k3B,KC_NO   ,  KC_NO   ,KC_NO   }   /* 3: D5 */   \
+   }
+
+#endif
 
 
 static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {

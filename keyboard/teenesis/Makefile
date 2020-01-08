@@ -122,6 +122,17 @@ NKRO_ENABLE ?= yes			# USB Nkey Rollover
 OPT_DEFS += -DACTION_MODS_INVERT
 
 
+# Teenesis-specific Options
+#
+FKEYS_ENABLE ?= no			# Use matrix with F-keys
+TEENSY_ENABLE ?= yes 		# Use pinout for Teensy 2.0
+ADVPRO_ENABLE ?= no 		# Use pinout for Advanced Pro Micro (+2 pins)
+
+ifeq (ADVPRO_ENABLE, yes)
+	TEENSY_ENABLE = no
+endif
+
+
 #
 # Keymap file
 #

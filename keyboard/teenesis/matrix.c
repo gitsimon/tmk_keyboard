@@ -204,22 +204,44 @@ static matrix_row_t read_cols(void)
 /* Row pin configuration
  * row: 0   1   2   3   4   5   6   7   8   9   10  11  12  13  14
  * pin: F0  F1  F4  F5  F6  F7  D0  D1  D2  D3  D4  D5  D6  C6  C7
+ * pin: D7  E6  F4  F5  F6  F7  D0  D1  D2  D3  D4  D5  D6  C6  C7
  */
 static void unselect_rows(void)
 {
     // Hi-Z(DDR:0, PORT:0) to unselect
+#ifdef ADVPRO_ENABLE
+    DDRD  &= ~(1<<7 | 1<<6 | 1<<5 | 1<<4 | 1<<3 | 1<<2 | 1<<1 | 1<<0);
+    PORTD &= ~(1<<7 | 1<<6 | 1<<5 | 1<<4 | 1<<3 | 1<<2 | 1<<1 | 1<<0);
+    DDRF  &= ~(1<<7 | 1<<6 | 1<<5 | 1<<4);
+    PORTF &= ~(1<<7 | 1<<6 | 1<<5 | 1<<4);
+    DDRC  &= ~(1<<7 | 1<<6);
+    PORTC &= ~(1<<7 | 1<<6);
+    DDRE  &= ~(1<<6);
+    PORTE &= ~(1<<6);
+#else
     DDRD  &= ~(1<<6 | 1<<5 | 1<<4 | 1<<3 | 1<<2 | 1<<1 | 1<<0);
     PORTD &= ~(1<<6 | 1<<5 | 1<<4 | 1<<3 | 1<<2 | 1<<1 | 1<<0);
     DDRF  &= ~(1<<7 | 1<<6 | 1<<5 | 1<<4 | 1<<1 | 1<<0);
     PORTF &= ~(1<<7 | 1<<6 | 1<<5 | 1<<4 | 1<<1 | 1<<0);
     DDRC  &= ~(1<<7 | 1<<6);
     PORTC &= ~(1<<7 | 1<<6);
+#endif
 }
 
 static void select_row(uint8_t row)
 {
     // Output low(DDR:1, PORT:0) to select
     switch (row) {
+#ifdef ADVPRO_ENABLE
+        case 0:
+            DDRD  |= (1<<7);
+            PORTD &= ~(1<<7);
+            break;
+        case 1:
+            DDRE  |= (1<<6);
+            PORTE &= ~(1<<6);
+            break;
+#else
         case 0:
             DDRF  |= (1<<0);
             PORTF &= ~(1<<0);
@@ -228,6 +250,7 @@ static void select_row(uint8_t row)
             DDRF  |= (1<<1);
             PORTF &= ~(1<<1);
             break;
+#endif
         case 2:
             DDRF  |= (1<<4);
             PORTF &= ~(1<<4);
@@ -268,6 +291,7 @@ static void select_row(uint8_t row)
             DDRD  |= (1<<5);
             PORTD &= ~(1<<5);
             break;
+#ifdef FKEYS_ENABLE
         case 12:
             DDRD  |= (1<<6);
             PORTD &= ~(1<<6);
@@ -280,6 +304,7 @@ static void select_row(uint8_t row)
             DDRC  |= (1<<7);
             PORTC &= ~(1<<7);
             break;
+#endif
     }
 }
 
