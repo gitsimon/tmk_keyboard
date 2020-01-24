@@ -36,35 +36,35 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
-/* pinout     Teensy                Advanced ProMicro (32u4)
+/* pinout     Teensy                Advanced ProMicro (32u4)                ProMicro+238 (32u4)
 ## columns
-F0 - PL2/6    PL1/1             |   * D7        PLC1/1
-F1 - PL2/7    PL1/2             |   * E6        PLC1/2
-F4 - PL2/8    PL1/3             |   F4          PLC1/3
-F5 - PL2/10   PL1/8             |   F5          PLC1/6
-F6 - PL2/11                     |   F6
-F7 - PL2/12                     |   F7
-D0 - PR2/1    PR1/3             |   D0          PRC1/1
-D1 - PR2/3    PR1/4             |   D1          PRC1/2
-D2 - PR2/2    PR1/5             |   D2          PRC1/3
-D3 - PR2/12   PR1/6             |   D3          PRC1/4
-D4 - PR2/13                     |   D4
-D5 - PR2/6                      |   D5
+F0 - PL2/6    PL1/1             |   * D7        PLC1/1                  |   * D7
+F1 - PL2/7    PL1/2             |   * E6        PLC1/2                  |   * E6
+F4 - PL2/8    PL1/3             |   F4          PLC1/3                  |   F4
+F5 - PL2/10   PL1/8             |   F5          PLC1/6                  |   F5
+F6 - PL2/11                     |   F6                                  |   F6
+F7 - PL2/12                     |   F7                                  |   F7
+D0 - PR2/1    PR1/3             |   D0          PRC1/1                  |   D0
+D1 - PR2/3    PR1/4             |   D1          PRC1/2                  |   D1
+D2 - PR2/2    PR1/5             |   D2          PRC1/3                  |   D2
+D3 - PR2/12   PR1/6             |   D3          PRC1/4                  |   D3
+D4 - PR2/13                     |   D4                                  |   D4
+D5 - PR2/6                      |   D5                                  |   C6
 
 ## F-keys
-D6 -                            |   * 
-C6 -                            |   C6
-C7 -                            |   * 
+D6 -                            |   *                                   |   *
+C6 -                            |   C6                                  |   *
+C7 -                            |   *                                   |   *
 
 ## rows
-B0 - PL2/13   PR2/10            |   B0
-B1 - PL2/5    PR2/9             |   B1
-B2 - PL2/3    PR2/8             |   B2
-B3 - PL2/2    PR2/7             |   B3
-B4 - PL2/1    PR2/4             |   B4
+B0 - PL2/13   PR2/10            |   B0                                  |   Y0
+B1 - PL2/5    PR2/9             |   B1                                  |   Y1
+B2 - PL2/3    PR2/8             |   B2                                  |   Y2
+B3 - PL2/2    PR2/7             |   B3                                  |   Y3
+B4 - PL2/1    PR2/4             |   B4                                  |   Y4
 
-B5 - PL1/4    PR1/7             |   B5          PLC1/4  PRC1/5
-B6 - PL1/5    PR1/8             |   B6          PLC1/5  PRC1/6
+B5 - PL1/4    PR1/7             |   B5          PLC1/4  PRC1            |   Y5
+B6 - PL1/5    PR1/8             |   B6          PLC1/5  PRC1            |   Y6
 */
 
 /* Teenesis keymap definition macro */
