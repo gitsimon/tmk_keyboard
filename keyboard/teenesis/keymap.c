@@ -36,36 +36,69 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
-/* pinout     Teensy                Advanced ProMicro (32u4)                ProMicro+238 (32u4)
-## columns
-F0 - PL2/6    PL1/1             |   * D7        PLC1/1                  |   * D7
-F1 - PL2/7    PL1/2             |   * E6        PLC1/2                  |   * E6
-F4 - PL2/8    PL1/3             |   F4          PLC1/3                  |   F4
-F5 - PL2/10   PL1/8             |   F5          PLC1/6                  |   F5
-F6 - PL2/11                     |   F6                                  |   F6
-F7 - PL2/12                     |   F7                                  |   F7
-D0 - PR2/1    PR1/3             |   D0          PRC1/1                  |   D0
-D1 - PR2/3    PR1/4             |   D1          PRC1/2                  |   D1
-D2 - PR2/2    PR1/5             |   D2          PRC1/3                  |   D2
-D3 - PR2/12   PR1/6             |   D3          PRC1/4                  |   D3
-D4 - PR2/13                     |   D4                                  |   D4
-D5 - PR2/6                      |   D5                                  |   C6
+/* PLATES PINOUT
+                                                 <--- Black ----  TESTER PROBES
+                       Left Hand (PL2)                      Right Hand (PR2)            ^
+                    6   7   8   10  11  12               1   3   2   12  13  6          |
+                  +------------------------             -------------------------+
+ ^  R0         13 | =   1   2   3   4   5                6   7   8   9   0   -   | 10   R
+ |  R1          5 | TB  Q   W   E   R   T                Y   U   I   O   P   \   | 9    e
+    R2          3 | CP  A   S   D   F   G                H   J   K   L   ;   '   | 8    d
+ R  R3          2 | LS  Z   X   C   V   B                N   M   ,   .   /   RS  | 7
+ E  R4          1 |     `   IN  LT      RT               UP      DN  [   ]       | 4    |
+ A
+ D
+                      Left Thumb (PL1)                      Right Thumb (PR1)
+ R                  1   2   3   8                        3   4   5   6
+ n                +------------------------             -------------------------+
+    R5          4 | SL3     SL6 SL4                      SR1     SR2 SR5         | 7
+ |  R6          5 |     SL1 SL5 SL2                      SR4 SR3 SR6             | 8
+ |
+ |
+ |
+ |                  W0  W1  W2  W3  W4  W5               W6  W7  W8  W9  W10 W11
+ |
+ NET NAMES --- WRITE (Wn) --->
+*/
 
-## F-keys
-D6 -                            |   *                                   |   *
-C6 -                            |   C6                                  |   *
-C7 -                            |   *                                   |   *
+
+
+/* WIRING
+Teensy  -> Teensy
+APM     -> Advanced ProMicro (32u4)
+PM238   -> ProMicro + 2x238 (32u4)
+
+                            | Teensy  |  APM    | PM238   |
+## columns
+W0  - PL2/6    PL1/1        |   F0    |  *D7    |  *D7    |
+W1  - PL2/7    PL1/2        |   F1    |  *E6    |  *E6    |
+W2  - PL2/8    PL1/3        |   F4    |   F4    |   F4    |
+W3  - PL2/10   PL1/8        |   F5    |   F5    |   F5    |
+W4  - PL2/11                |   F6    |   F6    |   F6    |
+W5  - PL2/12                |   F7    |   F7    |   F7    |
+W6  - PR2/1    PR1/3        |   D0    |   D0    |   D0    |
+W7  - PR2/3    PR1/4        |   D1    |   D1    |   D1    |
+W8  - PR2/2    PR1/5        |   D2    |   D2    |   D2    |
+W9  - PR2/12   PR1/6        |   D3    |   D3    |   D3    |
+W10 - PR2/13                |   D4    |   D4    |   D4    |
+W11 - PR2/6                 |   D5    |   D5    |  *C6    |
+
+## columns (F-keys)
+W12 -                       |   *     |   *     |   *     |
+W13 -                       |   *     |   *     |   *     |
+W14 -                       |   *     |   *     |   *     |
 
 ## rows
-B0 - PL2/13   PR2/10            |   B0                                  |   Y0
-B1 - PL2/5    PR2/9             |   B1                                  |   Y1
-B2 - PL2/3    PR2/8             |   B2                                  |   Y2
-B3 - PL2/2    PR2/7             |   B3                                  |   Y3
-B4 - PL2/1    PR2/4             |   B4                                  |   Y4
-
-B5 - PL1/4    PR1/7             |   B5          PLC1/4  PRC1            |   Y5
-B6 - PL1/5    PR1/8             |   B6          PLC1/5  PRC1            |   Y6
+R0  - PL2/13   PR2/10       |   B0    |   B0    |   B0    |
+R1  - PL2/5    PR2/9        |   B1    |   B1    |   B1    |
+R2  - PL2/3    PR2/8        |   B2    |   B2    |   B2    |
+R3  - PL2/2    PR2/7        |   B3    |   B3    |   B3    |
+R4  - PL2/1    PR2/4        |   B4    |   B4    |   B4    |
+R5  - PL1/4    PR1/7        |   B5    |   B5    |   B5    |
+R6  - PL1/5    PR1/8        |   B6    |   B6    |   B6    |
 */
+
+
 
 /* Teenesis keymap definition macro */
 #ifdef FKEYS_ENABLE

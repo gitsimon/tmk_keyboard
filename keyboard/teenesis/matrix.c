@@ -49,6 +49,8 @@ uint32_t matrix_timer;
 uint32_t matrix_scan_count;
 #endif
 
+//                           Y7               B3     B2     B1
+static uint8_t led_staus = 1<<6|1<<5|1<<4 | 1<<3 | 1<<2 | 1<<1;
 
 inline
 uint8_t matrix_rows(void)
@@ -170,8 +172,15 @@ uint8_t matrix_key_count(void)
 static void  init_cols(void)
 {
     // Input with pull-up(DDR:0, PORT:1)
+#ifdef PRO238_ENABLE
+    DDRB  &= ~(led_staus);
+    PORTB |=  (led_staus);
+
+
+#else
     DDRB  &= ~(1<<6 | 1<<5 | 1<<4 | 1<<3 | 1<<2 | 1<<1 | 1<<0);
     PORTB |=  (1<<6 | 1<<5 | 1<<4 | 1<<3 | 1<<2 | 1<<1 | 1<<0);
+#endif
 }
 
 static matrix_row_t read_cols(void)
@@ -209,6 +218,9 @@ static matrix_row_t read_cols(void)
 static void unselect_rows(void)
 {
     // Hi-Z(DDR:0, PORT:0) to unselect
+#ifdef PRO238_ENABLE
+#endif
+
 #ifdef ADVPRO_ENABLE
     DDRD  &= ~(1<<7 | 1<<6 | 1<<5 | 1<<4 | 1<<3 | 1<<2 | 1<<1 | 1<<0);
     PORTD &= ~(1<<7 | 1<<6 | 1<<5 | 1<<4 | 1<<3 | 1<<2 | 1<<1 | 1<<0);
@@ -218,7 +230,9 @@ static void unselect_rows(void)
     PORTC &= ~(1<<7 | 1<<6);
     DDRE  &= ~(1<<6);
     PORTE &= ~(1<<6);
-#else
+#endif
+
+#ifdef TEENSY_ENABLE
     DDRD  &= ~(1<<6 | 1<<5 | 1<<4 | 1<<3 | 1<<2 | 1<<1 | 1<<0);
     PORTD &= ~(1<<6 | 1<<5 | 1<<4 | 1<<3 | 1<<2 | 1<<1 | 1<<0);
     DDRF  &= ~(1<<7 | 1<<6 | 1<<5 | 1<<4 | 1<<1 | 1<<0);

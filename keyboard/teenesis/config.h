@@ -40,7 +40,7 @@ Project located at <https://github.com/benblazak/ergodox-firmware>
 #endif
 #define MATRIX_COLS 7
 
-#define BOOTLOADER_SIZE         512
+#define BOOTLOADER_SIZE         2048
 
 #define MOUSEKEY_DELAY          100
 #define MOUSEKEY_INTERVAL       20
